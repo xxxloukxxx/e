@@ -34,7 +34,7 @@ exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id numlockx on
 #exec_always --no-startup-id nitrogen --set-zoom-fill --random /home/cedric/.w/
-exec_always --no-startup-id feh -r --randomize --bg-fill --no-xinerama ~/.w
+#exec_always --no-startup-id feh -r --randomize --bg-fill --no-xinerama ~/.w
 
 # Some bindings
 bindsym $mod+Shift+Ctrl+S exec --no-startup-id flameshot gui
