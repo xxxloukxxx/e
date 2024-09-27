@@ -41,23 +41,23 @@ endif
 " Plugins
 call plug#begin()
 Plug 'joshdick/onedark.vim'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'godlygeek/tabular'
+"Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
-Plug 'Chiel92/vim-autoformat'
+"Plug 'Chiel92/vim-autoformat'
 "Plug 'lifepillar/vim-mucomplete'
-Plug 'davidhalter/jedi-vim'
-Plug 'tpope/vim-sensible'
-Plug 'airblade/vim-gitgutter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'alvan/vim-closetag'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'flazz/vim-colorschemes'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'tpope/vim-sensible'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'vim-scripts/indentpython.vim'
+"Plug 'alvan/vim-closetag'
+"Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+"Plug 'flazz/vim-colorschemes'
 Plug 'sheerun/vim-polyglot'
 call plug#end()
 
@@ -72,32 +72,33 @@ set noshowmode
 "Colorscheme
 "colorscheme onedark
 set termguicolors
-colorscheme znake 
+"colorscheme znake 
+colorscheme onedark 
 
 "Ale Plugin
-set omnifunc=ale#completion#OmniFunc
-set completeopt+=menuone
-set completeopt+=noselect
-nnoremap <C-S-i> :ALEFix prettier
+"set omnifunc=ale#completion#OmniFunc
+"set completeopt+=menuone
+"set completeopt+=noselect
+"nnoremap <C-S-i> :ALEFix prettier
 
 "mu-complete
-let g:mucomplete#enable_auto_at_startup = 1
+"let g:mucomplete#enable_auto_at_startup = 1
 
 "FileType Specific 
-augroup filetype_py
-    autocmd!
-    :autocmd FileType python noremap <leader>c :ALEFix black<CR>:w<CR>:!python %<CR>
-augroup end
+"augroup filetype_py
+"    autocmd!
+"    :autocmd FileType python noremap <leader>c :ALEFix black<CR>:w<CR>:!python %<CR>
+"augroup end
 
-augroup filetype_tex
-    autocmd!
-    :autocmd FileType tex noremap <leader>c :VimtexCompile<CR>
-    :autocmd FileType tex noremap <leader>m <esc>:w!<cr>:make<cr>
-    :autocmd FileType markdown noremap <leader>m <esc>:w!<cr>:make<cr>
-    let g:vimtex_compiler_latexmk = {'executable' : 'latexmk', 'options' : [ '-xelatex', '-file-line-error', '-synctex=1', '-interaction=nonstopmode', ], }
-    let g:vimtex_quickfix_enabled = 0
-    let g:vimtex_compiler_latexmk_engines = {'_' : '-xelatex',}
-augroup end
+"augroup filetype_tex
+"    autocmd!
+"    :autocmd FileType tex noremap <leader>c :VimtexCompile<CR>
+"    :autocmd FileType tex noremap <leader>m <esc>:w!<cr>:make<cr>
+"    :autocmd FileType markdown noremap <leader>m <esc>:w!<cr>:make<cr>
+"    let g:vimtex_compiler_latexmk = {'executable' : 'latexmk', 'options' : [ '-xelatex', '-file-line-error', '-synctex=1', '-interaction=nonstopmode', ], }
+"    let g:vimtex_quickfix_enabled = 0
+"    let g:vimtex_compiler_latexmk_engines = {'_' : '-xelatex',}
+"augroup end
 
 " My mapping
 noremap <space> :
@@ -109,12 +110,13 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>x :bd<cr>
 nnoremap <leader>e :edit<space>
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>q :q<cr>
-nnoremap <leader>s :%s/
 nnoremap <leader>v :vs<cr>
 nnoremap <leader>h :split<cr>
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>d "_dd
+nnoremap <leader>s :%s/
+nnoremap <leader>q :q<cr>
+nnoremap <leader><ESC> :q!<cr>
 
 " Move/Copy lines
 nnoremap <M-up> :m .-2<CR>==
@@ -129,6 +131,6 @@ nnoremap <C-S-M-down> :t.<CR>
 nnoremap <C-S-M-up> yyP
 
 " Delete line
-nnoremap <C-k> "_dd
+"nnoremap <C-k> "_dd
 
 
