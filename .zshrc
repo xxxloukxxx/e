@@ -104,8 +104,8 @@ export LANG=fr_FR.UTF-8
 alias zshconfig="e ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vim
+export VISUAL=vim
 
 alias ls='lsd --color=auto'
 alias grep='grep --color=auto'
@@ -118,8 +118,7 @@ alias bat="batcat"
 alias du="du -h"
 alias df="df -h"
 
-alias e="nvim"
-alias o="nopen"
+alias e="vim"
 
 alias zz="zathura --fork"
 
@@ -132,7 +131,6 @@ export NNN_OPTS='der'
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG='o:fzopen;m:mocq;c:fzcd;p:preview-tui'
 export NNN_TRASH=1
-export NNN_OPENER=nopen
 
 path+=/home/cedric/.venv/bin
 path+=/home/cedric/.local/bin
