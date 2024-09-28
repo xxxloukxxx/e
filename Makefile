@@ -2,7 +2,8 @@ all: upgrade install config suckless ohmyzsh packages
 
 upgrade:
 	echo "\n>>> Update and upgrade"
-	sudo cp -fr .install/sudoers /etc/sudoers
+	sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric'
+	# sudo cp -fr .install/sudoers /etc/sudoers
 	sudo apt -qq -y update
 	sudo apt -qq -y full-upgrade
 
