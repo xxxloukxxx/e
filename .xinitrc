@@ -1,22 +1,9 @@
-xrdb -merge ~/.Xresources
-
-# Video Config
-# xrandr --output VGA-1 --rotation left
-# xrandr --output HDMI1 --off
-# xrandr --output DP-1 --rotate left
-
-# Fix some "Bugs"
-
 systemctl --user import-environment DISPLAY XAUTHORITY
 dbus-update-activation-environment DISPLAY XAUTHORITY
-
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# Wallpaper, status and dunst 
-# feh --randomize --bg-fill ~/.w &
-slstatus 2>&1 >/dev/null &
-xsetroot -solid "#010309"
-dunst &
+xrdb -merge ~/.Xresources
 
-# Start dwm
+xrandr --output DP-1 --off && xrandr --output HDMI-1 --auto 
+
 sleep 1 && exec i3

@@ -6,19 +6,15 @@ upgrade:
 	sudo apt -qq -y update
 	sudo apt -qq -y full-upgrade
 
-
 install:
 	echo "\n>>> Install zsh, vim and friends"
-	sudo apt -qq -y install micro nnn vim zsh greetd stterm xorg i3 i3blocks okular zathura suckless-tools aptitude
-	sudo cp -fr .install/greetd.config.toml /etc/greetd/config.toml
-	sudo apt -qq -y install git make build-essential cmake ninja-build i3 xorg greed micro vim zsh dex i3status i3blocks lsd sudo ripgrep
-	sudo apt -qq -y install 'fonts-hac*' 'fonts-libe*' eog caja dunst flameshot trash-cli
-	sudo apt -qq -y install git curl wget xinit feh tmux
-	sudo apt -qq -y install fonts-font-awesome fonts-terminus-otb fonts-agave
+	sudo apt -qq -y install git make build-essential cmake ninja-build micro nnn vim vim-gtk3 zsh stterm lsd ripgrep suckless-tools aptitude
+	sudo apt -qq -y install curl wget tmux gettext unzip p7zip-full rsync fd-find bat tree btop locales-all gcc
+	sudo apt -qq -y install moc pulseaudio pavucontrol fzf caja flameshot trash-cli
 	sudo apt -qq -y install x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev numlockx
-	sudo apt -qq -y install fzf fd-find bat tree ripgrep btop locales-all build-essential gcc rsstail slock trash-cli moc
-	sudo apt -qq -y install moc pulseaudio pavucontrol fzf tmux numlockx caja
-	sudo apt -qq -y install gettext unzip p7zip-full curl wget rsync
+	sudo apt -qq -y install 'fonts-hac*' 'fonts-libe*' fonts-font-awesome fonts-terminus-otb fonts-agave
+	sudo apt -qq -y install	greetd xorg xinit dex i3 i3blocks i3status feh slock dunst 
+	sudo cp -fr .install/greetd.config.toml /etc/greetd/config.toml
 	sudo apt -qq -y autoremove
 	sudo aptitude -y -q=5 autoclean
 	sudo aptitude -y -q=5 purge
@@ -26,7 +22,7 @@ install:
 ohmyzsh:
 	echo "\n>>> Install Oh-my-zsh"
 	sudo apt -qq -y install zsh
-	rm -fr "/home/cedric/.oh-my-zsh" 2> /dev/null
+	rm -fr "~/.oh-my-zsh" 2> /dev/null
 	wget -q "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
 	chmod +x ./install.sh
 	./install.sh --unattended
@@ -56,7 +52,7 @@ suckless:
 
 packages:
 	echo "\n>>> Install some packages"
-	sudo apt -qq -y install gimp firefox-esr firefox-esr-l10n-fr texlive-full evince okular pdftk imagemagick
+	sudo apt -qq -y install gimp firefox-esr firefox-esr-l10n-fr texlive-full evince zathura okular pdftk imagemagick eog
 
 
 .SILENT:

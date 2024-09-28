@@ -1,6 +1,5 @@
 $pdf_mode = 5;
 
-
 $pdf_previewer = 'start zathura';
 
 $pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode';
