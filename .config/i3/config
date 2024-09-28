@@ -2,30 +2,20 @@
 set $mod Mod4
 focus_follows_mouse no
 font pango:Firacode Nerd Font Mono 10
-bindsym $mod+Return exec st
-bindcode $mod+40 exec --no-startup-id dmenu_run
-#bindcode $mod+9  exec --no-startup-id dmenu_run -fn hack-14 -dim 0.5
-#bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-
-# exec_always --no-startup-id xrandr --output VGA1 --right-of DP1
+bindcode $mod+36 exec st                        # mod4+return
+bindcode $mod+40 exec --no-startup-id dmenu_run  # mod4+d
 
 for_window [class="graph85emulator.exe"] floating enable
 for_window [class="obs"] floating enable
 
 # Colors/Borders/Gaps 
-smart_gaps on
-gaps inner 4px
-gaps outer 2px
-default_border pixel 3
+default_border pixel 1
 client.focused          #81a1c1 #81a1c1 #ffffff #ff0000 #ff0000
 client.unfocused        #2e3440 #1f222d #888888 #1f222d
 client.focused_inactive #2e3440 #1f222d #888888 #1f222d
 client.placeholder      #2e3440 #1f222d #888888 #1f222d
 client.urgent           #900000 #900000 #ffffff #900000
-client.background       #242424
+client.background       #000000
 
 # Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -33,117 +23,122 @@ exec_always --no-startup-id xset b 0
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id numlockx on
-#exec_always --no-startup-id nitrogen --set-zoom-fill --random /home/cedric/.w/
-#exec_always --no-startup-id feh -r --randomize --bg-fill --no-xinerama ~/.w
+exec_always --no-startup-id discord
+assign [class="discord"] number "9:O"
 
 # Some bindings
-bindsym $mod+Shift+Ctrl+S exec --no-startup-id flameshot gui
-#bindsym $mod+Shift+Ctrl+Delete exec --no-startup-id nitrogen --set-zoom-fill --random /home/cedric/.w/
-bindsym $mod+Shift+Ctrl+Delete exec --no-startup-id feh -r --randomize --bg-fill --no-xinerama ~/.w
+## $mod+Shift+Ctrl+s
+bindcode $mod+Shift+Ctrl+39 exec --no-startup-id flameshot gui
 
 # Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle &&  pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle &&  pkill -RTMIN+10 i3blocks
-
-bindsym $mod+k exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
-bindsym $mod+l exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
-bindsym $mod+j exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+## $mod+[j, k, l] : mute, vol-, vol+
+bindcode $mod+44 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+bindcode $mod+45 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+bindcode $mod+46 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 
 # Select/Move/Modify/Kill container
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-bindsym $mod+h split h
-bindsym $mod+v split v
-bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+q kill
+bindcode $mod+113 focus left
+bindcode $mod+116 focus down
+bindcode $mod+111 focus up
+bindcode $mod+114 focus right
+bindcode $mod+Shift+113 move left
+bindcode $mod+Shift+116 move down
+bindcode $mod+Shift+111 move up
+bindcode $mod+Shift+114 move right
+## $mod+f
+bindcode $mod+41 fullscreen toggle
+## $mod+Shift+c
+bindcode $mod+shift+54 kill
 
 # Change container layout (stacked, tabbed, toggle split)
 floating_modifier $mod
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
+## $mod+shift+space
+bindcode $mod+Shift+65 floating toggle
 
 # Workspaces
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-bindcode $mod+10 workspace number $ws1
-bindcode $mod+11 workspace number $ws2
-bindcode $mod+12 workspace number $ws3
-bindcode $mod+13 workspace number $ws4
-bindcode $mod+14 workspace number $ws5
-bindcode $mod+15 workspace number $ws6
-bindcode $mod+16 workspace number $ws7
-bindcode $mod+17 workspace number $ws8
-bindcode $mod+18 workspace number $ws9
-bindcode $mod+19 workspace number $ws10
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
-bindsym $mod+Shift+p move workspace to output next
-bindcode $mod+Shift+10 move container to workspace number $ws1
-bindcode $mod+Shift+11 move container to workspace number $ws2
-bindcode $mod+Shift+12 move container to workspace number $ws3
-bindcode $mod+Shift+13 move container to workspace number $ws4
-bindcode $mod+Shift+14 move container to workspace number $ws5
-bindcode $mod+Shift+15 move container to workspace number $ws6
-bindcode $mod+Shift+16 move container to workspace number $ws7
-bindcode $mod+Shift+17 move container to workspace number $ws8
-bindcode $mod+Shift+18 move container to workspace number $ws9
-bindcode $mod+Shift+19 move container to workspace number $ws10
+set $ws1 "1:Q"
+set $ws2 "2:W"
+set $ws3 "3:E"
+set $ws4 "4:R"
+set $ws5 "5:T"
+set $ws6 "6:Y"
+set $ws7 "7:U"
+set $ws8 "8:I"
+set $ws9 "9:O"
+
+# $mod+tab / $mod+shift+tab
+bindcode $mod+23 workspace next
+bindcode $mod+Shift+23 workspace prev
+
+# $mod+p
+bindcode $mod+Shift+33 move workspace to output next
+
+# $mod+[q,w,e,r,t,y,u,i,o]
+bindcode $mod+24 workspace number $ws1
+bindcode $mod+25 workspace number $ws2
+bindcode $mod+26 workspace number $ws3
+bindcode $mod+27 workspace number $ws4
+bindcode $mod+28 workspace number $ws5
+bindcode $mod+29 workspace number $ws6
+bindcode $mod+30 workspace number $ws7
+bindcode $mod+31 workspace number $ws8
+bindcode $mod+32 workspace number $ws9
+bindcode $mod+Shift+24 move container to workspace number $ws1
+bindcode $mod+Shift+25 move container to workspace number $ws2
+bindcode $mod+Shift+26 move container to workspace number $ws3
+bindcode $mod+Shift+27 move container to workspace number $ws4
+bindcode $mod+Shift+28 move container to workspace number $ws5
+bindcode $mod+Shift+29 move container to workspace number $ws6
+bindcode $mod+Shift+30 move container to workspace number $ws7
+bindcode $mod+Shift+31 move container to workspace number $ws8
+bindcode $mod+Shift+32 move container to workspace number $ws9
 
 # Resize window
 mode "resize" {
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+        bindcode 113 resize shrink width 10 px or 10 ppt
+        bindcode 116 resize grow height 10 px or 10 ppt
+        bindcode 111 resize shrink height 10 px or 10 ppt
+        bindcode 114 resize grow width 10 px or 10 ppt
+        bindcode 36 mode "default"
+        bindcode 9  mode "default"
+        ## $mod+g
+        bindcode $mod+42 mode "default"
 }
-bindsym $mod+r mode "resize"
-
-# Bar
-bar {
-        #status_command i3status
-        status_command i3blocks
-        font pango:Firacode Nerd Font Mono 10
-    	colors {
-            separator  #1f222d
-            background #1f222d
-            statusline #81a1c1
-            focused_workspace  #1f222d #1f222d    #81a1c1
-            active_workspace   #1f222d #252936    #5e81ac
-            inactive_workspace #1f222d #1f222d    #4c566a
-            urgent_workspace   #1f222d #1f222d    #ee829f
-            binding_mode       #1f222d #81a1c1    #2e3440
-    	}
-}
+## $mod+g
+bindcode $mod+42 mode "resize"
 
 # Lock/Reboot/Shutdown
 set $modsys "(l)ock - (r)eboot - (s)hutdown"
 mode $modsys {
-		bindsym r exec --no-startup-id systemctl reboot
-		bindsym s exec --no-startup-id systemctl poweroff
-		bindsym l exec --no-startup-id i3lock -c 000000, mode "default"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+        # $mod + [l, r, s]
+        bindcode 46 exec --no-startup-id i3lock -c 000000, mode "default"
+        bindcode 27 exec --no-startup-id systemctl reboot
+        bindcode 39 exec --no-startup-id systemctl poweroff
+        ## $mod + [Return, Esc]
+        bindcode 36 mode "default"
+        bindcode 9  mode "default"
 }
-bindsym $mod+Shift+Delete mode $modsys
+bindcode $mod+Shift+22 mode $modsys
+
+# Bar
+bar {
+        strip_workspace_numbers yes
+        status_command i3blocks
+        font pango:Firacode Nerd Font Mono 10
+    	colors {
+            separator  #000000
+            background #000000
+            statusline #ffffff
+            focused_workspace  #000000 #000000 #ffffff
+            active_workspace   #000000 #000000 #5e81ac
+            inactive_workspace #000000 #000000 #4c566a
+            urgent_workspace   #000000 #000000 #ff0000
+            binding_mode       #000000 #000000 #ffffff
+    	}
+}
+
 

@@ -117,6 +117,7 @@ nnoremap <leader>d "_dd
 nnoremap <leader>s :%s/
 nnoremap <leader>q :q<cr>
 nnoremap <leader><ESC> :q!<cr>
+nnoremap <leader><ESC><ESC> :nohlsearch<cr>
 
 " Move/Copy lines
 nnoremap <M-up> :m .-2<CR>==
