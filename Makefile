@@ -23,7 +23,7 @@ install:
 ohmyzsh:
 	echo "\n>>> Install Oh-my-zsh"
 	sudo apt -qq -y install zsh
-	rm -fr "~/.oh-my-zsh" 2> /dev/null
+	rm -fr ~/.oh-my-zsh 2> /dev/null
 	wget -q "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
 	chmod +x ./install.sh
 	./install.sh --unattended
