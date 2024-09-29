@@ -13,9 +13,9 @@ filetype indent on
 set number
 set relativenumber
 augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
 
 set cursorline
@@ -43,14 +43,17 @@ set nofoldenable
 
 " autocmd {{{
 augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 augroup filetype_md
-  autocmd!
-  autocmd BufWritePre *.md ALEFix prettier
+    autocmd!
+    autocmd BufWritePre *.md ALEFix prettier
 augroup END
+
+au BufWrite * :Autoformat
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -98,26 +101,29 @@ nnoremap <silent> <C-S-M-up> yyP
 
 """ Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 """ Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
+            \| PlugInstall --sync | source $MYVIMRC
+            \| endif
 
 call plug#begin()
-  Plug 'ayu-theme/ayu-vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-repeat'
-  Plug 'itchyny/lightline.vim'
-  Plug 'scrooloose/nerdtree'
-  Plug 'tomtom/tcomment_vim'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'lervag/vimtex'
-  Plug 'w0rp/ale'
+Plug 'ayu-theme/ayu-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch'
+Plug 'Chiel92/vim-autoformat'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'lervag/vimtex'
+Plug 'w0rp/ale'
 call plug#end()
 
 """ Colorscheme
