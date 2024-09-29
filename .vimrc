@@ -122,7 +122,7 @@ call plug#end()
 
 """ Colorscheme
 set termguicolors
-let ayucolor="dark" " mirage / light / dark
+let ayucolor="mirage" " mirage / light / dark
 colorscheme ayu
 
 """ Config for airline
