@@ -119,11 +119,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
 Plug 'Chiel92/vim-autoformat'
 Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-css-color'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
 Plug 'w0rp/ale'
+Plug 'simnalamburt/vim-mundo'
 call plug#end()
 
 """ Colorscheme
