@@ -147,6 +147,6 @@ nnoremap <silent> <leader>/ :TComment<cr>
 """ Mapping for Nerd
 nnoremap <silent> <leader>n :NERDTreeToggle<cr>
 
-
-
+""" Mapping for ALE
+nnoremap <silent> <leader>a :ALEToogle<cr>
 " }}}
