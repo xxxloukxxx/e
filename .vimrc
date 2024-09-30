@@ -53,7 +53,7 @@ augroup filetype_md
 augroup END
 
 " au VimEnter * :ALEDisable
-au BufWrite * :Autoformat
+" au BufWrite * :Autoformat
 
 " }}}
 
@@ -112,6 +112,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 Plug 'ayu-theme/ayu-vim'
+Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/fzf.vim'
@@ -149,4 +150,10 @@ nnoremap <silent> <leader>n :NERDTreeToggle<cr>
 
 """ Mapping for ALE
 nnoremap <silent> <leader>a :ALEToggle<cr>
+
+""" Config for markdown
+" let g:vim_markdown_folding_disabled = 1
+
+
+
 " }}}
