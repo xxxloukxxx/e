@@ -52,7 +52,7 @@ augroup filetype_md
     autocmd BufWritePre *.md ALEFix prettier
 augroup END
 
-au VimEnter * :ALEDisable
+" au VimEnter * :ALEDisable
 au BufWrite * :Autoformat
 
 " }}}
@@ -127,6 +127,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
 Plug 'w0rp/ale'
+Plug 'davidhalter/jedi-vim'
 Plug 'simnalamburt/vim-mundo'
 call plug#end()
 
