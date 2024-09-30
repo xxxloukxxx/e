@@ -148,5 +148,5 @@ nnoremap <silent> <leader>/ :TComment<cr>
 nnoremap <silent> <leader>n :NERDTreeToggle<cr>
 
 """ Mapping for ALE
-nnoremap <silent> <leader>a :ALEToogle<cr>
+nnoremap <silent> <leader>a :ALEToggle<cr>
 " }}}
