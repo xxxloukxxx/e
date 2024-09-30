@@ -52,6 +52,7 @@ augroup filetype_md
     autocmd BufWritePre *.md ALEFix prettier
 augroup END
 
+au VimEnter * :ALEDisable
 au BufWrite * :Autoformat
 
 " }}}
@@ -144,5 +145,7 @@ nnoremap <silent> <leader>/ :TComment<cr>
 
 """ Mapping for Nerd
 nnoremap <silent> <leader>n :NERDTreeToggle<cr>
+
+
 
 " }}}
