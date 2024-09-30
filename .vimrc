@@ -112,7 +112,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 Plug 'ayu-theme/ayu-vim'
-Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'junegunn/fzf.vim'
