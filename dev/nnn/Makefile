@@ -33,7 +33,7 @@ O_NOSORT := 0  # disable sorting entries on dir load
 # User patches
 O_COLEMAK := 0 # change key bindings to colemak compatible layout
 O_GITSTATUS := 0 # add git status to detail view
-O_NAMEFIRST := 0 # print file name first, add uid and guid to detail view
+O_NAMEFIRST := 1 # print file name first, add uid and guid to detail view
 O_RESTOREPREVIEW := 0 # add preview pipe to close and restore preview pane
 
 T_ICONS := 0 # test if multiple icons options are set and fail
