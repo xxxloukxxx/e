@@ -23,12 +23,14 @@ exec_always --no-startup-id xset b 0
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id numlockx on
+exec_always --no-startup-id feh --randomize --no-xinerama --bg-fill ~/.w
 exec_always --no-startup-id discord
 assign [class="discord"] number "9:O"
 
 # Some bindings
 ## $mod+Shift+Ctrl+s
 bindcode $mod+Shift+Ctrl+39 exec --no-startup-id flameshot gui
+bindcode $mod+Shift+Ctrl+22 exec --no-startup-id feh --randomize --no-xinerama --bg-fill ~/.w
 
 # Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
