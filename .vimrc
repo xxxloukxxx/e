@@ -111,25 +111,24 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| endif
 
 call plug#begin()
+Plug 'ap/vim-css-color'
 Plug 'ayu-theme/ayu-vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'davidhalter/jedi-vim'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'lervag/vimtex'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'simnalamburt/vim-mundo'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
-Plug 'Chiel92/vim-autoformat'
-Plug 'itchyny/lightline.vim'
-Plug 'ap/vim-css-color'
-Plug 'scrooloose/nerdtree'
-Plug 'tomtom/tcomment_vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'lervag/vimtex'
+Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'davidhalter/jedi-vim'
-Plug 'simnalamburt/vim-mundo'
 call plug#end()
 
 """ Colorscheme
@@ -153,7 +152,4 @@ nnoremap <silent> <leader>a :ALEToggle<cr>
 
 """ Config for markdown
 " let g:vim_markdown_folding_disabled = 1
-
-
-
 " }}}
