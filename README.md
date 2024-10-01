@@ -1,3 +1,3 @@
 # e
 
-config avec i3
+Config avec i3
