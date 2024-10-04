@@ -5,10 +5,11 @@
 
 " configs {{{
 set nocompatible
-syntax on
+
 filetype on
 filetype plugin on
 filetype indent on
+syntax enable
 
 set number
 set relativenumber
@@ -94,6 +95,7 @@ vnoremap <silent> <M-down> :m '>+1<CR>gv=gv
 """ Duplicate lines
 nnoremap <silent> <C-S-M-down> :t.<CR>
 nnoremap <silent> <C-S-M-up> yyP
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,16 +114,16 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 Plug 'ap/vim-css-color'
-Plug 'ayu-theme/ayu-vim'
+Plug 'chrisbra/csv.vim'
+Plug 'godlygeek/tabular'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'davidhalter/jedi-vim'
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-" Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tomtom/tcomment_vim'
@@ -134,27 +136,21 @@ Plug 'tpope/vim-surround'
 call plug#end()
 
 """ Colorscheme
+set t_Co=256
 set termguicolors
-let ayucolor="mirage" " mirage / light / dark
-colorscheme ayu
+colorscheme molokai
 
-""" Config for airline
+""" Config for lightline
 set laststatus=2
-set noshowmode
 set background=dark
+set noshowmode
 
 """ Mapping for Tcomment
 nnoremap <silent> <leader>/ :TComment<cr>
-
-""" Mapping for Nerd
-" nnoremap <silent> <leader>n :NERDTreeToggle<cr>
-
-""" Mapping for nnn
-" nnoremap <silent> <leader>n :NnnPicker<cr>
 
 """ Mapping for ALE
 " nnoremap <silent> <leader>a :ALEToggle<cr>
 
 """ Config for markdown
-" let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled = 1
 " }}}
