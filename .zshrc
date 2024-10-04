@@ -131,7 +131,7 @@ export NNN_OPTS='der'
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG='o:fzopen;m:mocq;c:fzcd;p:preview-tui'
 export NNN_TRASH=1
-# export NNN_OPENER=nopen
+export NNN_OPENER=nopen
 
 path+=/home/cedric/.venv/bin
 path+=/home/cedric/.local/bin
