@@ -114,11 +114,12 @@ call plug#begin()
 Plug 'ap/vim-css-color'
 Plug 'ayu-theme/ayu-vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
+Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
@@ -129,7 +130,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 call plug#end()
 
 """ Colorscheme
@@ -146,10 +147,13 @@ set background=dark
 nnoremap <silent> <leader>/ :TComment<cr>
 
 """ Mapping for Nerd
-nnoremap <silent> <leader>n :NERDTreeToggle<cr>
+" nnoremap <silent> <leader>n :NERDTreeToggle<cr>
+
+""" Mapping for nnn
+" nnoremap <silent> <leader>n :NnnPicker<cr>
 
 """ Mapping for ALE
-nnoremap <silent> <leader>a :ALEToggle<cr>
+" nnoremap <silent> <leader>a :ALEToggle<cr>
 
 """ Config for markdown
 " let g:vim_markdown_folding_disabled = 1
