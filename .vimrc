@@ -121,7 +121,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tomtom/tcomment_vim'
