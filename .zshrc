@@ -104,6 +104,10 @@ export LANG=fr_FR.UTF-8
 alias zshconfig="e ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export FZF_DEFAULT_OPTS='--layout=reverse -x'
+export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
+export FZF_CTRL_T_COMMAND='ag --hidden -l -g ""'
+
 export EDITOR=vim
 export VISUAL=vim
 

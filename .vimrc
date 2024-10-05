@@ -61,8 +61,6 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " mappings {{{
-noremap <space> :
-
 let mapleader = " "
 let g:mapleader = " "
 
@@ -114,16 +112,18 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 Plug 'ap/vim-css-color'
+Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'godlygeek/tabular'
-Plug 'Chiel92/vim-autoformat'
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'gabrielelana/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tomtom/tcomment_vim'
@@ -132,13 +132,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 call plug#end()
 
 """ Colorscheme
 set t_Co=256
 set termguicolors
-colorscheme molokai
+colorscheme PaperColor
 
 """ Config for lightline
 set laststatus=2
