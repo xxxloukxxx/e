@@ -53,9 +53,6 @@ augroup filetype_md
     autocmd BufWritePre *.md ALEFix prettier
 augroup END
 
-" au VimEnter * :ALEDisable
-" au BufWrite * :Autoformat
-
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -63,6 +60,9 @@ augroup END
 " mappings {{{
 let mapleader = " "
 let g:mapleader = " "
+
+nnoremap <silent> <leader><ESC><ESC> ZQ
+nnoremap <silent> <leader><leader> <C-W><C-W>
 
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>x :bd<cr>
@@ -78,10 +78,6 @@ nnoremap <silent> <C-L> :nohlsearch<cr>
 nnoremap <silent> <leader>d "_dd
 nnoremap <silent> <leader>z :set wrap!<cr>
 
-execute "set <M-z>=\ez"
-nnoremap <silent> <M-z> :set wrap!<cr>
-inoremap <silent> <M-z> :set wrap!<cr>
-
 """ Move/Copy lines
 nnoremap <silent> <M-up> :m .-2<CR>==
 nnoremap <silent> <M-down> :m .+1<CR>==
@@ -94,6 +90,9 @@ vnoremap <silent> <M-down> :m '>+1<CR>gv=gv
 nnoremap <silent> <C-S-M-down> :t.<CR>
 nnoremap <silent> <C-S-M-up> yyP
 
+""" Some stuff
+nnoremap  ,v :edit   $MYVIMRC<CR>
+nnoremap  ,u :source $MYVIMRC<CR>
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -110,20 +109,22 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| PlugInstall --sync | source $MYVIMRC
             \| endif
 
+
 call plug#begin()
-Plug 'ap/vim-css-color'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
-Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-peekaboo'
 Plug 'lervag/vimtex'
 Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'gabrielelana/vim-markdown'
-" Plug 'plasticboy/vim-markdown'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'ap/vim-css-color'
 Plug 'sheerun/vim-polyglot'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tomtom/tcomment_vim'
@@ -133,6 +134,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 """ Colorscheme
@@ -148,9 +150,48 @@ set noshowmode
 """ Mapping for Tcomment
 nnoremap <silent> <leader>/ :TComment<cr>
 
-""" Mapping for ALE
-" nnoremap <silent> <leader>a :ALEToggle<cr>
+""" Config for ALE
+nnoremap <silent> <leader>a :ALEToggle<cr>
+
+let g:ale_linters = {
+\  'python': ['ruff'],
+\}
+
+let g:ale_fixers = {
+\  'python': ['black'],
+\  'json': ['prettier'],
+\  'css': ['prettier'],
+\  'markdown': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_enabled = 1
 
 """ Config for markdown
 let g:vim_markdown_folding_disabled = 1
+
+""" Config for Coc.nvim
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " }}}

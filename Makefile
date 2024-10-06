@@ -12,7 +12,7 @@ install:
 	sudo apt -qq -y install git make build-essential cmake ninja-build micro nnn vim vim-gtk3 zsh stterm lsd ripgrep suckless-tools aptitude
 	sudo apt -qq -y install curl wget tmux gettext unzip p7zip-full rsync fd-find bat tree btop locales-all gcc silversearcher-ag
 	sudo apt -qq -y install moc pulseaudio pavucontrol fzf caja flameshot trash-cli
-	sudo apt -qq -y install x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev numlockx
+	sudo apt -qq -y install x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev numlockx xdotool
 	sudo apt -qq -y install 'fonts-hac*' 'fonts-libe*' fonts-font-awesome fonts-terminus-otb fonts-agave
 	sudo apt -qq -y install	greetd xorg xinit dex i3 i3blocks i3status feh slock dunst 
 	sudo cp -fr .install/greetd.config.toml /etc/greetd/config.toml
