@@ -93,6 +93,9 @@ nnoremap <silent> <C-S-M-up> yyP
 """ Some stuff
 nnoremap  ,v :edit   $MYVIMRC<CR>
 nnoremap  ,u :source $MYVIMRC<CR>
+noremap d "_d
+noremap c "_c
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,4 +197,8 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 " }}}
