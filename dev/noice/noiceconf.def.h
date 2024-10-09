@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 #define CWD   ""
-#define CURSR " > "
+#define CURSR ">> "
 #define EMPTY "   "
 
 #define NOPEN "nopen"
