@@ -93,8 +93,6 @@ nnoremap <silent> <C-S-M-up> yyP
 """ Some stuff
 nnoremap  ,v :edit   $MYVIMRC<CR>
 nnoremap  ,u :source $MYVIMRC<CR>
-noremap d "_d
-noremap c "_c
 
 " }}}
 
