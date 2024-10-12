@@ -48,10 +48,6 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-augroup filetype_md
-    autocmd!
-    autocmd BufWritePre *.md ALEFix prettier
-augroup END
 
 " }}}
 
@@ -94,6 +90,13 @@ nnoremap <silent> <C-S-M-up> yyP
 nnoremap  ,v :edit   $MYVIMRC<CR>
 nnoremap  ,u :source $MYVIMRC<CR>
 
+nnoremap  d "_d
+nnoremap  c "_c
+nnoremap  x "_x
+nnoremap  dd "_dd
+
+vnoremap <leader>g :<C-U>!surf "http://www.google.fr/search?hl=fr&q=<cword>" >& /dev/null <CR><CR>
+vnoremap <leader>w :<C-U>!surf "http://fr.wikipedia.org/wiki/<cword>" >& /dev/null <CR><CR>
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,6 +139,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'chrisbra/matchit'
 call plug#end()
 
 """ Colorscheme
@@ -164,7 +168,7 @@ let g:ale_fixers = {
 \  'css': ['prettier'],
 \  'markdown': ['prettier'],
 \}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:ale_enabled = 1
 
 """ Config for markdown
