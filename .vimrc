@@ -94,6 +94,7 @@ nnoremap  d "_d
 nnoremap  c "_c
 nnoremap  x "_x
 nnoremap  dd "_dd
+inoremap jk <esc>
 
 vnoremap <leader>g :<C-U>!surf "http://www.google.fr/search?hl=fr&q=<cword>" >& /dev/null <CR><CR>
 vnoremap <leader>w :<C-U>!surf "http://fr.wikipedia.org/wiki/<cword>" >& /dev/null <CR><CR>
@@ -139,7 +140,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'chrisbra/matchit'
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 """ Colorscheme
@@ -173,6 +174,9 @@ let g:ale_enabled = 1
 
 """ Config for markdown
 let g:vim_markdown_folding_disabled = 1
+
+""" Config for Sneak
+let g:sneak#label = 1
 
 """ Config for Coc.nvim
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
