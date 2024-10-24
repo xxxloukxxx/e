@@ -11,7 +11,7 @@ Xft.hintstyle: hintslight
 
 Xcursor.size: 48
 
-xterm*faceName: monospace-12
+xterm*faceName: FiraCode Nerd Font Mono-14
 
 ! xterm
 xterm*dynamiccolors:      true
