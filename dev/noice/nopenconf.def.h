@@ -9,7 +9,7 @@ struct rule rules[] = {
 	{ .regex = "\\.(pdf|ps)$", .file = "zathura", .argv = { "zathura --fork", "{}", NULL} },
 	{ .regex = "\\.(kicad_pro)$", .file = "kicad", .argv = { "kicad", "{}", NULL} },
 	{ .regex = "\\.(FCStd)$", .file = "freecad", .argv = { "freecad", "{}", NULL} },
-	{ .regex = "\\.(dxf)$", .file = "dxf", .argv = { "librecad", "{}", NULL} },
+	{ .regex = "\\.(dxf)$", .file = "librecad", .argv = { "librecad", "{}", NULL} },
 	{ .regex = "\\.(docx|doc|xls|xlsx|odf|ods)$", .file = "office", .argv = { "libreoffice", "{}", NULL} },
 	{ .regex = "\\.sh$", .file = "sh", .argv = { "sh", "{}", NULL} },
 	{ .regex = ".", .file = "vim", .argv = { "vim", "{}", NULL } },
