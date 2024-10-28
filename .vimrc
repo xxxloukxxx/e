@@ -34,6 +34,7 @@ set smartcase
 set showcmd
 set showmatch
 set hlsearch
+set timeoutlen=400
 set history=5000
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set clipboard=unnamedplus
@@ -61,7 +62,7 @@ nnoremap <silent> <leader><ESC><ESC> ZQ
 nnoremap <silent> <leader><leader> <C-W><C-W>
 
 nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>x :bd<cr>
+nnoremap <silent> <leader>x :bd!<cr>
 nnoremap <silent> <leader>f :Files<cr>
 
 nnoremap <silent> <leader>v :vs<cr>
@@ -89,11 +90,13 @@ nnoremap <silent> <C-S-M-up> yyP
 """ Some stuff
 nnoremap  ,v :edit   $MYVIMRC<CR>
 nnoremap  ,u :source $MYVIMRC<CR>
+nnoremap <silent> <leader>af :Autoformat<cr>
+nnoremap <leader>s :%s/
 
-nnoremap  d "_d
-nnoremap  c "_c
-nnoremap  x "_x
-nnoremap  dd "_dd
+nnoremap d "_d
+nnoremap c "_c
+nnoremap x "_x
+nnoremap dd "_dd
 inoremap jk <esc>
 
 vnoremap <leader>g :<C-U>!surf "http://www.google.fr/search?hl=fr&q=<cword>" >& /dev/null <CR><CR>
@@ -160,15 +163,15 @@ nnoremap <silent> <leader>/ :TComment<cr>
 nnoremap <silent> <leader>a :ALEToggle<cr>
 
 let g:ale_linters = {
-\  'python': ['ruff'],
-\}
+            \  'python': ['ruff'],
+            \}
 
 let g:ale_fixers = {
-\  'python': ['black'],
-\  'json': ['prettier'],
-\  'css': ['prettier'],
-\  'markdown': ['prettier'],
-\}
+            \  'python': ['black'],
+            \  'json': ['prettier'],
+            \  'css': ['prettier'],
+            \  'markdown': ['prettier'],
+            \}
 let g:ale_fix_on_save = 0
 let g:ale_enabled = 1
 
@@ -193,18 +196,18 @@ set signcolumn=yes
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+            \ coc#pum#visible() ? coc#pum#next(1) :
+            \ CheckBackspace() ? "\<Tab>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 " }}}
