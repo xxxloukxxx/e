@@ -66,5 +66,10 @@ packages:
 	echo "\n>>> Install some packages"
 	sudo apt -y -qq install gimp firefox-esr firefox-esr-l10n-fr texlive-full evince zathura okular pdftk imagemagick eog
 
+xcmd:
+	wget -O xcmd.sh https://get.x-cmd.com
+	sudo chmod 777 xcmd.sh
+	./xcmd.sh
+	rm -fr xcmd.sh
 
 .SILENT:
