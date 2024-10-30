@@ -59,7 +59,6 @@ let mapleader = " "
 let g:mapleader = " "
 
 nnoremap <silent> <leader><ESC><ESC> ZQ
-nnoremap <silent> <leader><leader> <C-W><C-W>
 
 nnoremap <silent> <leader>b :Buffers<cr>
 nnoremap <silent> <leader>x :bd!<cr>
