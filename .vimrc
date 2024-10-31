@@ -34,7 +34,7 @@ set smartcase
 set showcmd
 set showmatch
 set hlsearch
-set timeoutlen=400
+set timeoutlen=500
 set history=5000
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set clipboard=unnamedplus
@@ -157,6 +157,7 @@ set noshowmode
 
 """ Mapping for Tcomment
 nnoremap <silent> <leader>/ :TComment<cr>
+vnoremap <silent> <leader>/ :TComment<cr>
 
 """ Config for ALE
 nnoremap <silent> <leader>a :ALEToggle<cr>
