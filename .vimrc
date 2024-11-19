@@ -62,6 +62,7 @@ let g:mapleader = " "
 nnoremap <silent> <leader><ESC><ESC> ZQ
 
 nnoremap <silent> <leader>b :Buffers<cr>
+nnoremap <silent> <leader>e i€<esc>
 nnoremap <silent> <leader>m :w<cr>:make<cr>
 nnoremap <silent> <leader>x :bd!<cr>
 nnoremap <silent> <leader>f :Files<cr>
