@@ -119,16 +119,15 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| PlugInstall --sync | source $MYVIMRC
             \| endif
 
-
 call plug#begin()
+Plug 'mhinz/vim-startify'
+Plug 'glidenote/memolist.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-" Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
 Plug 'lervag/vimtex'
 Plug 'mcchrish/nnn.vim'
@@ -136,13 +135,15 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ap/vim-css-color'
 Plug 'sheerun/vim-polyglot'
-Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 """ Colorscheme
@@ -161,4 +162,22 @@ vnoremap <silent> <leader>/ :TComment<cr>
 
 """ Config for markdown
 let g:vim_markdown_folding_disabled = 1
+
+""" Config for Memolist
+let g:memolist_path = "~/.cache/memo"
+
+" tags prompt (default 0)
+let g:memolist_prompt_tags = 1
+
+" categories prompt (default 0)
+let g:memolist_prompt_categories = 1
+
+" use fzf (default 0)
+let g:memolist_fzf = 1
+
+" Config for Startify
+let g:startify_custom_header = []
+let g:startify_bookmarks = [ {'c': '~/.vimrc'} ]
+let g:startify_files_number = 5
+autocmd User Startified setlocal cursorline
 
