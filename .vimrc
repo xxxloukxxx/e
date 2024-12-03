@@ -40,6 +40,15 @@ set history=5000
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set clipboard=unnamedplus
 set nofoldenable
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,6 +75,7 @@ nnoremap <silent> <leader>e i€<esc>
 nnoremap <silent> <leader>m :w<cr>:make<cr>
 nnoremap <silent> <leader>x :bd!<cr>
 nnoremap <silent> <leader>f :Files<cr>
+nnoremap <silent> <leader>t :term<cr>
 
 nnoremap <silent> <leader>v :vs<cr>
 nnoremap <silent> <leader>h :split<cr>
@@ -120,6 +130,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| endif
 
 call plug#begin()
+Plug 'romainl/vim-qf'
 Plug 'mhinz/vim-startify'
 Plug 'glidenote/memolist.vim'
 Plug 'Chiel92/vim-autoformat'
@@ -181,3 +192,4 @@ let g:startify_bookmarks = [ {'c': '~/.vimrc'} ]
 let g:startify_files_number = 5
 autocmd User Startified setlocal cursorline
 
+" End oif file
