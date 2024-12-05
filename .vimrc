@@ -49,7 +49,11 @@ if !isdirectory($HOME."/.vim/undo-dir")
 endif
 set undodir=~/.vim/undo-dir
 set undofile
+set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~,space:·
+set showbreak=\\
+set list
 " }}}
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
