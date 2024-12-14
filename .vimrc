@@ -5,6 +5,9 @@
 
 " configs {{{
 set nocompatible
+set hidden
+
+set backspace=indent,eol,start
 
 filetype on
 filetype plugin on
@@ -49,7 +52,7 @@ if !isdirectory($HOME."/.vim/undo-dir")
 endif
 set undodir=~/.vim/undo-dir
 set undofile
-set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~,space:·
+set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
 " }}}
@@ -71,6 +74,9 @@ augroup END
 " mappings {{{
 let mapleader = " "
 let g:mapleader = " "
+
+nnoremap j gj
+nnoremap k gk
 
 nnoremap <silent> <leader><ESC><ESC> ZQ
 
