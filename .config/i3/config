@@ -1,7 +1,7 @@
 # General
 set $mod Mod4
 focus_follows_mouse no
-font pango:Firacode Nerd Font Mono 14
+font pango:Firacode Nerd Font Mono 16
 bindcode $mod+36 exec st                         # mod4+return
 bindcode $mod+9 exec spad                        # mod4+esc
 bindcode $mod+40 exec --no-startup-id dmenu_run  # mod4+d
@@ -77,6 +77,8 @@ set $ws8 "8:I"
 set $ws9 "9:O"
 
 # $mod+tab / $mod+shift+tab
+bindcode $mod+38 workspace next
+bindcode $mod+Shift+38 workspace prev
 bindcode $mod+23 workspace next
 bindcode $mod+Shift+23 workspace prev
 
@@ -134,7 +136,7 @@ bindcode $mod+Shift+22 mode $modsys
 bar {
         strip_workspace_numbers yes
                 status_command i3blocks
-                font pango:Firacode Nerd Font Mono 14
+                font pango:Firacode Nerd Font Mono 16
                 colors {
                         separator  #000000
                                 background #000000
