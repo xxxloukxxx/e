@@ -4,15 +4,19 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " configs {{{
+set encoding=utf-8
+scriptencoding utf-8
+
 set nocompatible
 set hidden
-
+set nospell
 set backspace=indent,eol,start
+set autoindent
 
 filetype on
 filetype plugin on
 filetype indent on
-syntax enable
+syntax on
 
 set number
 set relativenumber
@@ -23,13 +27,14 @@ augroup numbertoggle
 augroup END
 
 set cursorline
+set ruler
 set smarttab
 set wildmenu wildoptions=pum
 set shiftwidth=4
 set tabstop=4
 set expandtab
 set nobackup
-set scrolloff=10
+set scrolloff=999
 set nowrap
 set incsearch
 set ignorecase
@@ -55,6 +60,7 @@ set undofile
 set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
+set autochdir
 " }}}
 
 
@@ -80,12 +86,12 @@ nnoremap k gk
 
 nnoremap <silent> <leader><ESC><ESC> ZQ
 
-nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>e i€<esc>
-nnoremap <silent> <leader>m :w<cr>:make<cr>
-nnoremap <silent> <leader>x :bd!<cr>
-nnoremap <silent> <leader>f :Files<cr>
-nnoremap <silent> <leader>t :term<cr>
+nnoremap <silent> <leader>b   :Buffers<cr>
+nnoremap <silent> <leader>eur i€<esc>
+nnoremap <silent> <leader>m   :w<cr>:make<cr>
+nnoremap <silent> <leader>x   :bd!<cr>
+nnoremap <silent> <leader>f   :Files<cr>
+nnoremap <silent> <leader>t   :term<cr>
 
 nnoremap <silent> <leader>v :vs<cr>
 nnoremap <silent> <leader>h :split<cr>
@@ -107,7 +113,7 @@ vnoremap <silent> <M-down> :m '>+1<CR>gv=gv
 
 """ Duplicate lines
 nnoremap <silent> <C-S-M-down> :t.<CR>
-nnoremap <silent> <C-S-M-up> yyP
+noremap <silent> <C-S-M-up> yyP
 
 """ Some stuff
 nnoremap  ,v :edit   $MYVIMRC<CR>
@@ -141,14 +147,12 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 Plug 'romainl/vim-qf'
-Plug 'mhinz/vim-startify'
-Plug 'glidenote/memolist.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'lervag/vimtex'
 Plug 'mcchrish/nnn.vim'
@@ -163,14 +167,17 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/vim-easy-align'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 """ Colorscheme
 set t_Co=256
 set termguicolors
-colorscheme PaperColor
+try
+    colorscheme PaperColor
+catch
+    colorscheme default
+endtry
 
 """ Config for lightline
 set laststatus=2
@@ -183,23 +190,5 @@ vnoremap <silent> <leader>/ :TComment<cr>
 
 """ Config for markdown
 let g:vim_markdown_folding_disabled = 1
-
-""" Config for Memolist
-let g:memolist_path = "~/.cache/memo"
-
-" tags prompt (default 0)
-let g:memolist_prompt_tags = 1
-
-" categories prompt (default 0)
-let g:memolist_prompt_categories = 1
-
-" use fzf (default 0)
-let g:memolist_fzf = 1
-
-" Config for Startify
-let g:startify_custom_header = []
-let g:startify_bookmarks = [ {'c': '~/.vimrc'} ]
-let g:startify_files_number = 5
-autocmd User Startified setlocal cursorline
 
 " End oif file

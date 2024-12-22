@@ -10,6 +10,7 @@ static const char *fonts[] = {"Firacode Nerd Font Mono:size=16"};
 // static const char* fonts[] = { "SauceCodePro Nerd Font Mono:size=14" };
 // static const char* fonts[] = { "RobotoMono Nerd Font:size=12" };
 // static const char *fonts[] = {"Inconsolata:size=16"};
+// static const char *fonts[] = {"monofur:size=18"};
 //  "Liberation Mono:pixelsize=18:antialias=true:autohint=true"
 static const char* prompt = NULL; /* -p  option; prompt to the left of input field */
 static const char* colors[SchemeLast][2] = {
