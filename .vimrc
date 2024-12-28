@@ -1,6 +1,5 @@
 " My .vimrc
 " =========
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " configs {{{
@@ -12,6 +11,8 @@ set hidden
 set nospell
 set backspace=indent,eol,start
 set autoindent
+set autowrite
+set autoread
 
 filetype on
 filetype plugin on
@@ -47,6 +48,7 @@ set updatetime=300
 set history=5000
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set clipboard=unnamedplus
+set shortmess+=I
 set nofoldenable
 " Let's save undo info!
 if !isdirectory($HOME."/.vim")
@@ -61,8 +63,8 @@ set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
 set autochdir
-" }}}
 
+" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -71,8 +73,6 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-
-
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,9 +89,12 @@ nnoremap <silent> <leader><ESC><ESC> ZQ
 nnoremap <silent> <leader>b   :Buffers<cr>
 nnoremap <silent> <leader>eur i€<esc>
 nnoremap <silent> <leader>m   :w<cr>:make<cr>
+nnoremap <silent> <leader>,  :Marks<cr>
 nnoremap <silent> <leader>x   :bd!<cr>
 nnoremap <silent> <leader>f   :Files<cr>
 nnoremap <silent> <leader>t   :term<cr>
+nnoremap <silent> <leader>tn  :tabnew<cr>
+nnoremap <silent> <leader>tt  :tabnext<cr>
 
 nnoremap <silent> <leader>v :vs<cr>
 nnoremap <silent> <leader>h :split<cr>
@@ -116,8 +119,8 @@ nnoremap <silent> <C-S-M-down> :t.<CR>
 noremap <silent> <C-S-M-up> yyP
 
 """ Some stuff
-nnoremap  ,v :edit   $MYVIMRC<CR>
-nnoremap  ,u :source $MYVIMRC<CR>
+nnoremap ,v :edit   $MYVIMRC<CR>
+nnoremap ,u :source $MYVIMRC<CR>
 nnoremap <silent> <leader>af :Autoformat<cr>
 nnoremap <leader>s :%s/
 
@@ -134,18 +137,17 @@ vnoremap <leader>w :<C-U>!surf "http://fr.wikipedia.org/wiki/<cword>" >& /dev/nu
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " plugins {{{
-
 """ Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
-
 """ Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| PlugInstall --sync | source $MYVIMRC
             \| endif
 
 call plug#begin()
+Plug 'jacquesbh/vim-showmarks'
 Plug 'romainl/vim-qf'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
@@ -168,27 +170,74 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-""" Colorscheme
+""" Colorscheme{{{
 set t_Co=256
 set termguicolors
 try
     colorscheme PaperColor
 catch
     colorscheme default
-endtry
-
-""" Config for lightline
+endtr
+" }}}
+""" Config for lightline{{{
 set laststatus=2
 set background=dark
 set noshowmode
-
-""" Mapping for Tcomment
+" }}}
+""" Mapping for Tcomment{{{
 nnoremap <silent> <leader>/ :TComment<cr>
 vnoremap <silent> <leader>/ :TComment<cr>
-
-""" Config for markdown
+" }}}
+""" Config for markdown{{{
 let g:vim_markdown_folding_disabled = 1
+" }}}
+""" Config for ALE{{{
+let g:ale_fixers = {
+            \   'markdown': ['prettier'],
+            \   'python': ['black'],
+            \}
 
-" End oif file
+let g:ale_linters = {
+            \   'markdown': ['markdownlint'],
+            \   'python': ['pylint'],
+            \}
+
+let g:ale_python_pylint_options = '--disable=C0114,C0116'
+let g:ale_fix_on_save = 1
+" }}}
+""" Config for Coc {{{
+inoremap <silent><expr> <TAB>
+            \ coc#pum#visible() ? coc#pum#next(1) :
+            \ CheckBackspace() ? "\<Tab>" :
+            \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" }}}
+
+
+" }}}
+
+"
+"
+" End of file
