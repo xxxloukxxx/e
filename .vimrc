@@ -123,7 +123,7 @@ vnoremap <silent> <M-down> :m '>+1<CR>gv
 
 """ Duplicate lines
 nnoremap <silent> <C-S-M-down> :t.<CR>
-noremap <silent> <C-S-M-up> yyP
+nnoremap <silent> <C-S-M-up> yyP
 
 """ Some stuff
 nnoremap ,v :edit   $MYVIMRC<CR>
