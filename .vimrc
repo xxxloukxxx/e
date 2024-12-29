@@ -1,7 +1,3 @@
-" My .vimrc
-" =========
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " configs {{{
 set encoding=utf-8
 scriptencoding utf-8
@@ -13,24 +9,16 @@ set backspace=indent,eol,start
 set autoindent
 set autowrite
 set autoread
-
 filetype on
 filetype plugin on
 filetype indent on
 syntax on
-
 set number
-set relativenumber
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
-
 set cursorline
 set ruler
 set smarttab
 set wildmenu wildoptions=pum
+set wildmenu wildmode=longest:full,full
 set shiftwidth=4
 set tabstop=4
 set expandtab
@@ -63,7 +51,6 @@ set listchars=tab:..,trail:_,extends:>,precedes:<,nbsp:~
 set showbreak=\\
 set list
 set autochdir
-
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -73,6 +60,18 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
+autocmd FileType help nnoremap <buffer> <CR> <C-]>
+autocmd FileType help nnoremap <buffer> <BS> <C-T>
+
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,32 +86,34 @@ nnoremap k gk
 nnoremap <silent> <leader><ESC><ESC> ZQ
 
 nnoremap <silent> <leader>b   :Buffers<cr>
-nnoremap <silent> <leader>eur i€<esc>
+nnoremap <silent> <leader>f   :Files<CR>
+nnoremap <silent> <leader>,   :Marks<cr>
 nnoremap <silent> <leader>m   :w<cr>:make<cr>
-nnoremap <silent> <leader>,  :Marks<cr>
 nnoremap <silent> <leader>x   :bd!<cr>
-nnoremap <silent> <leader>f   :Files<cr>
-nnoremap <silent> <leader>t   :term<cr>
-nnoremap <silent> <leader>tn  :tabnew<cr>
-nnoremap <silent> <leader>tt  :tabnext<cr>
+nnoremap <silent> <leader>t   :vertical rightbelow term<CR>
+nnoremap <silent> <leader>tn  :tabnew<CR>
+nnoremap <silent> <leader>tt  :tabnext<CR>
+nnoremap <silent> <leader>tc  :tabclose<CR>
 
-nnoremap <silent> <leader>v :vs<cr>
-nnoremap <silent> <leader>h :split<cr>
+nnoremap <silent> <leader>v :aboveleft<CR>:vs<CR>
+nnoremap <silent> <leader>h :botrigh<CR>:split<CR>
+nnoremap <silent> <leader>c :close<CR>
 
-nnoremap <silent> <leader>w :w!<cr>
-nnoremap <silent> <leader>q :q<cr>
-nnoremap <silent> <C-L> :nohlsearch<cr>
+
+nnoremap <silent> <leader>w :w!<CR>
+nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <C-L> :nohlsearch<CR>
 
 nnoremap <silent> <leader>d "_dd
-nnoremap <silent> <leader>z :set wrap!<cr>
+nnoremap <silent> <leader>z :set wrap!<CR>
 
 """ Move/Copy lines
-nnoremap <silent> <M-up> :m .-2<CR>==
-nnoremap <silent> <M-down> :m .+1<CR>==
-inoremap <silent> <M-up> <Esc>:m .-2<CR>==gi
-inoremap <silent> <M-down> <Esc>:m .+1<CR>==gi
-vnoremap <silent> <M-up> :m '<-2<CR>gv=gv
-vnoremap <silent> <M-down> :m '>+1<CR>gv=gv
+nnoremap <silent> <M-up> :m .-2<CR>
+nnoremap <silent> <M-down> :m .+1<CR>
+inoremap <silent> <M-up> <Esc>:m .-2<CR>
+inoremap <silent> <M-down> <Esc>:m .+1<CR>
+vnoremap <silent> <M-up> :m '<-2<CR>gv
+vnoremap <silent> <M-down> :m '>+1<CR>gv
 
 """ Duplicate lines
 nnoremap <silent> <C-S-M-down> :t.<CR>
@@ -121,8 +122,9 @@ noremap <silent> <C-S-M-up> yyP
 """ Some stuff
 nnoremap ,v :edit   $MYVIMRC<CR>
 nnoremap ,u :source $MYVIMRC<CR>
-nnoremap <silent> <leader>af :Autoformat<cr>
+nnoremap <silent> <leader>af :Autoformat<CR>
 nnoremap <leader>s :%s/
+nnoremap <silent> <leader>eur i€<esc>
 
 nnoremap d "_d
 nnoremap c "_c
@@ -139,7 +141,7 @@ vnoremap <leader>w :<C-U>!surf "http://fr.wikipedia.org/wiki/<cword>" >& /dev/nu
 " plugins {{{
 """ Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo ~/.vim/autoload/plug.vim --CReate-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 """ Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -147,6 +149,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| endif
 
 call plug#begin()
+Plug 'brennier/quicktex'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'romainl/vim-qf'
 Plug 'Chiel92/vim-autoformat'
@@ -188,8 +191,8 @@ set background=dark
 set noshowmode
 " }}}
 """ Mapping for Tcomment{{{
-nnoremap <silent> <leader>/ :TComment<cr>
-vnoremap <silent> <leader>/ :TComment<cr>
+nnoremap <silent> <leader>/ :TComment<CR>
+vnoremap <silent> <leader>/ :TComment<CR>
 " }}}
 """ Config for markdown{{{
 let g:vim_markdown_folding_disabled = 1
@@ -214,30 +217,45 @@ inoremap <silent><expr> <TAB>
             \ CheckBackspace() ? "\<Tab>" :
             \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 function! CheckBackspace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 " Use <c-space> to trigger completion
 if has('nvim')
     inoremap <silent><expr> <c-space> coc#refresh()
 else
     inoremap <silent><expr> <c-@> coc#refresh()
 endif
-
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " }}}
-
+""" Config for quicktex {{{
+let g:quicktex_tex = {
+            \' '   : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
+            \'m'   : '\( <+++> \) <++>',
+            \'prf' : "\\begin{proof}\<CR><+++>\<CR>\\end{proof}",
+            \}
+let g:quicktex_math = {
+            \' '    : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
+            \'fr'   : '\mathcal{R} ',
+            \'eq'   : '= ',
+            \'set'  : '\{ <+++> \} <++>',
+            \'frac' : '\frac{<+++>}{<++>} <++>',
+            \'one'  : '1 ',
+            \'st'   : ': ',
+            \'in'   : '\in ',
+            \'bn'   : '\mathbb{N} ',
+            \}
+" }}}
 
 " }}}
 
 "
 "
 " End of file
+" vim: set ft=vim :
+
