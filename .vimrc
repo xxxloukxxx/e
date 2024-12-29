@@ -1,3 +1,6 @@
+"-------------------------------------------
+" .vimrc
+"-------------------------------------------
 " configs {{{
 set encoding=utf-8
 scriptencoding utf-8
@@ -72,6 +75,9 @@ augroup END
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+
+autocmd! VimLeave * mksession! ~/.vimsession
+autocmd! VimEnter * source ~/.vimsession
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -83,7 +89,7 @@ let g:mapleader = " "
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <silent> <leader><ESC><ESC> ZQ
+nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
 
 nnoremap <silent> <leader>b   :Buffers<cr>
 nnoremap <silent> <leader>f   :Files<CR>
@@ -98,7 +104,10 @@ nnoremap <silent> <leader>tc  :tabclose<CR>
 nnoremap <silent> <leader>v :aboveleft<CR>:vs<CR>
 nnoremap <silent> <leader>h :botrigh<CR>:split<CR>
 nnoremap <silent> <leader>c :close<CR>
-
+nnoremap <silent> <Leader>y 10<C-W>-
+nnoremap <silent> <Leader>u 10<C-W>+
+nnoremap <silent> <Leader>Y 10<C-W><
+nnoremap <silent> <Leader>U 10<C-W>>
 
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap <silent> <leader>q :q<CR>
@@ -175,8 +184,8 @@ Plug 'tpope/vim-surround'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-""" Colorscheme{{{
+" }}}
+""" Colorscheme {{{
 set t_Co=256
 set termguicolors
 try
@@ -185,19 +194,19 @@ catch
     colorscheme default
 endtr
 " }}}
-""" Config for lightline{{{
+""" Config for lightline {{{
 set laststatus=2
 set background=dark
 set noshowmode
 " }}}
-""" Mapping for Tcomment{{{
+""" Mapping for Tcomment {{{
 nnoremap <silent> <leader>/ :TComment<CR>
 vnoremap <silent> <leader>/ :TComment<CR>
 " }}}
-""" Config for markdown{{{
+""" Config for markdown {{{
 let g:vim_markdown_folding_disabled = 1
 " }}}
-""" Config for ALE{{{
+""" Config for ALE {{{
 let g:ale_fixers = {
             \   'markdown': ['prettier'],
             \   'python': ['black'],
@@ -237,25 +246,21 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:quicktex_tex = {
             \' '   : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
             \'m'   : '\( <+++> \) <++>',
-            \'prf' : "\\begin{proof}\<CR><+++>\<CR>\\end{proof}",
+            \'tab' : "\\begin{tabular}{|c|c|c|}\<CR><+++>\<CR>\\end{tabular}",
             \}
 let g:quicktex_math = {
             \' '    : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
-            \'fr'   : '\mathcal{R} ',
             \'eq'   : '= ',
             \'set'  : '\{ <+++> \} <++>',
             \'frac' : '\frac{<+++>}{<++>} <++>',
-            \'one'  : '1 ',
-            \'st'   : ': ',
-            \'in'   : '\in ',
             \'bn'   : '\mathbb{N} ',
+            \'br'   : '\mathbb{R} ',
+            \'bz'   : '\mathbb{Z} ',
             \}
 " }}}
 
 " }}}
 
 "
-"
 " End of file
 " vim: set ft=vim :
-
