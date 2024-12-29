@@ -75,9 +75,6 @@ augroup END
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
-
-autocmd! VimLeave * mksession! ~/.vimsession
-autocmd! VimEnter * source ~/.vimsession
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
