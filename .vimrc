@@ -41,7 +41,6 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set clipboard=unnamedplus
 set shortmess+=I
 set nofoldenable
-" Let's save undo info!
 if !isdirectory($HOME."/.vim")
     call mkdir($HOME."/.vim", "", 0770)
 endif
@@ -91,11 +90,12 @@ nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
 nnoremap <silent> <leader>b   :Buffers<cr>
 nnoremap <silent> <leader>f   :Files<CR>
 nnoremap <silent> <leader>,   :Marks<cr>
+nnoremap <silent> <leader>l   :Lines<cr>
 nnoremap <silent> <leader>m   :w<cr>:make<cr>
 nnoremap <silent> <leader>x   :bd!<cr>
 nnoremap <silent> <leader>t   :vertical rightbelow term<CR>
-nnoremap <silent> <leader>tn  :tabnew<CR>
-nnoremap <silent> <leader>tt  :tabnext<CR>
+nnoremap <silent> <leader>tt  :tabnew<CR>
+nnoremap <silent> <leader>tn  :tabnext<CR>
 nnoremap <silent> <leader>tc  :tabclose<CR>
 
 nnoremap <silent> <leader>v :aboveleft<CR>:vs<CR>
@@ -108,7 +108,7 @@ nnoremap <silent> <Leader>U 10<C-W>>
 
 nnoremap <silent> <leader>w :w!<CR>
 nnoremap <silent> <leader>q :q<CR>
-nnoremap <silent> <C-L> :nohlsearch<CR>
+nnoremap <silent> <C-l> :nohlsearch<CR>
 
 nnoremap <silent> <leader>d "_dd
 nnoremap <silent> <leader>z :set wrap!<CR>
@@ -120,10 +120,6 @@ inoremap <silent> <M-up> <Esc>:m .-2<CR>
 inoremap <silent> <M-down> <Esc>:m .+1<CR>
 vnoremap <silent> <M-up> :m '<-2<CR>gv
 vnoremap <silent> <M-down> :m '>+1<CR>gv
-
-""" Duplicate lines
-nnoremap <silent> <C-S-M-down> :t.<CR>
-nnoremap <silent> <C-S-M-up> yyP
 
 """ Some stuff
 nnoremap ,v :edit   $MYVIMRC<CR>
