@@ -34,7 +34,7 @@ set smartcase
 set showcmd
 set showmatch
 set hlsearch
-set timeoutlen=500
+set timeoutlen=600
 set updatetime=300
 set history=5000
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
@@ -79,63 +79,58 @@ autocmd BufWinEnter *.* silent loadview
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " mappings {{{
-let mapleader = " "
-let g:mapleader = " "
-
-nnoremap j gj
-nnoremap k gk
-
-nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
-
-nnoremap <silent> <leader>b   :Buffers<cr>
-nnoremap <silent> <leader>f   :Files<CR>
-nnoremap <silent> <leader>,   :Marks<cr>
-nnoremap <silent> <leader>l   :Lines<cr>
-nnoremap <silent> <leader>m   :w<cr>:make<cr>
-nnoremap <silent> <leader>x   :bd!<cr>
-nnoremap <silent> <leader>t   :vertical rightbelow term<CR>
-nnoremap <silent> <leader>tt  :tabnew<CR>
-nnoremap <silent> <leader>tn  :tabnext<CR>
-nnoremap <silent> <leader>tc  :tabclose<CR>
-
-nnoremap <silent> <leader>v :aboveleft<CR>:vs<CR>
-nnoremap <silent> <leader>h :botrigh<CR>:split<CR>
-nnoremap <silent> <leader>c :close<CR>
-nnoremap <silent> <Leader>y 10<C-W>-
-nnoremap <silent> <Leader>u 10<C-W>+
-nnoremap <silent> <Leader>Y 10<C-W><
-nnoremap <silent> <Leader>U 10<C-W>>
-
-nnoremap <silent> <leader>w :w!<CR>
-nnoremap <silent> <leader>q :q<CR>
-nnoremap <silent> <C-l> :nohlsearch<CR>
-
-nnoremap <silent> <leader>d "_dd
-nnoremap <silent> <leader>z :set wrap!<CR>
-
-""" Move/Copy lines
-nnoremap <silent> <M-up> :m .-2<CR>
-nnoremap <silent> <M-down> :m .+1<CR>
-inoremap <silent> <M-up> <Esc>:m .-2<CR>
-inoremap <silent> <M-down> <Esc>:m .+1<CR>
-vnoremap <silent> <M-up> :m '<-2<CR>gv
-vnoremap <silent> <M-down> :m '>+1<CR>gv
-
-""" Some stuff
-nnoremap ,v :edit   $MYVIMRC<CR>
-nnoremap ,u :source $MYVIMRC<CR>
-nnoremap <silent> <leader>af :Autoformat<CR>
-nnoremap <leader>s :%s/
-nnoremap <silent> <leader>eur i€<esc>
-
-nnoremap d "_d
-nnoremap c "_c
-nnoremap x "_x
+nnoremap j  gj
+nnoremap k  gk
+nnoremap d  "_d
+nnoremap c  "_c
+nnoremap x  "_x
 nnoremap dd "_dd
 inoremap jk <esc>
 
-vnoremap <leader>g :<C-U>!surf "http://www.google.fr/search?hl=fr&q=<cword>" >& /dev/null <CR><CR>
-vnoremap <leader>w :<C-U>!surf "http://fr.wikipedia.org/wiki/<cword>" >& /dev/null <CR><CR>
+let mapleader = " "
+let g:mapleader = " "
+
+nnoremap <silent> <leader>w          :w!<CR>
+nnoremap <silent> <leader>q          :q<CR>
+nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
+nnoremap <silent> <leader>m          :w<cr>:make<cr>
+nnoremap <silent> <leader>x          :bd!<cr>
+nnoremap <silent> <leader>t          :vertical rightbelow term<CR>
+nnoremap <silent> <leader>d          "_dd
+nnoremap <silent> <C-l>              :nohlsearch<CR>
+
+nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR>
+nnoremap <silent> <leader>h          :botrigh<CR>:split<CR>
+nnoremap <silent> <leader>c          :close<CR>
+nnoremap <silent> <leader><leader>j  5<C-W><
+nnoremap <silent> <leader><leader>k  5<C-W>>
+nnoremap <silent> <leader><leader>,  5<C-W>-
+nnoremap <silent> <leader><leader>.  5<C-W>+
+
+nnoremap <silent> <leader>z          :set wrap!<CR>
+
+""" Move/Copy lines
+nnoremap <silent> <M-up>             :m .-2<CR>
+nnoremap <silent> <M-down>           :m .+1<CR>
+inoremap <silent> <M-up>             <Esc>:m .-2<CR>
+inoremap <silent> <M-down>           <Esc>:m .+1<CR>
+vnoremap <silent> <M-up>             :m '<-2<CR>gv
+vnoremap <silent> <M-down>           :m '>+1<CR>gv
+
+""" Some stuff
+nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
+nnoremap <silent> ,u                 :source $MYVIMRC<CR>
+nnoremap <leader>s                   :%s/
+nnoremap <silent> <leader>eur        i€<esc>
+nnoremap <silent> <leader>af         :Autoformat<CR>
+
+nnoremap <silent> <leader><leader>b  :Buffers<cr>
+nnoremap <silent> <leader><leader>f  :Files<CR>
+nnoremap <silent> <leader><leader>m  :Marks<cr>
+nnoremap <silent> <leader><leader>l  :Lines<cr>
+nnoremap <silent> <leader><leader>c  :Commits<cr>
+nnoremap <silent> <leader><leader>t  :Tags<cr>
+nnoremap <silent> <leader><leader>w  :Windows<cr>
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -152,7 +147,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 Plug 'brennier/quicktex'
-Plug 'jacquesbh/vim-showmarks'
 Plug 'romainl/vim-qf'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
@@ -182,7 +176,7 @@ call plug#end()
 set t_Co=256
 set termguicolors
 try
-    colorscheme PaperColor
+    colorscheme ayu
 catch
     colorscheme default
 endtr
@@ -192,7 +186,7 @@ set laststatus=2
 set background=dark
 set noshowmode
 " }}}
-""" Mapping for Tcomment {{{
+""" Config for Tcomment {{{
 nnoremap <silent> <leader>/ :TComment<CR>
 vnoremap <silent> <leader>/ :TComment<CR>
 " }}}
@@ -250,6 +244,10 @@ let g:quicktex_math = {
             \'br'   : '\mathbb{R} ',
             \'bz'   : '\mathbb{Z} ',
             \}
+" }}}
+""" Config for fzf.vim {{{
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 " }}}
 
 " }}}
