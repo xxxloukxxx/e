@@ -79,13 +79,16 @@ autocmd BufWinEnter *.* silent loadview
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " mappings {{{
-nnoremap j  gj
-nnoremap k  gk
-nnoremap d  "_d
-nnoremap c  "_c
-nnoremap x  "_x
-nnoremap dd "_dd
-inoremap jk <esc>
+nnoremap j      gj
+nnoremap k      gk
+nnoremap <down> gj
+nnoremap <up>   gk
+nnoremap d      "_d
+nnoremap c      "_c
+nnoremap x      "_x
+nnoremap <del>  "_x
+nnoremap dd     "_dd
+inoremap jk     <esc>
 
 let mapleader = " "
 let g:mapleader = " "
@@ -102,10 +105,10 @@ nnoremap <silent> <C-l>              :nohlsearch<CR>
 nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR>
 nnoremap <silent> <leader>h          :botrigh<CR>:split<CR>
 nnoremap <silent> <leader>c          :close<CR>
-nnoremap <silent> <leader><leader>j  5<C-W><
-nnoremap <silent> <leader><leader>k  5<C-W>>
-nnoremap <silent> <leader><leader>,  5<C-W>-
-nnoremap <silent> <leader><leader>.  5<C-W>+
+nnoremap <silent> <leader><leader>,  5<C-W><
+nnoremap <silent> <leader><leader>.  5<C-W>>
+nnoremap <silent> <leader><leader>j  5<C-W>-
+nnoremap <silent> <leader><leader>k  5<C-W>+
 
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
