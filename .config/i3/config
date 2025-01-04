@@ -42,9 +42,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle &&  pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle &&  pkill -RTMIN+10 i3blocks
 ## $mod+[j, k, l] : mute, vol-, vol+
-bindcode $mod+44 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
-bindcode $mod+45 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
-bindcode $mod+46 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+# bindcode $mod+44 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+# bindcode $mod+45 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+# bindcode $mod+46 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
 
 # Select/Move/Modify/Kill container
 bindcode $mod+113 focus left
@@ -148,5 +148,3 @@ bar {
                                 binding_mode       #000000 #000000 #ffffff
                 }
 }
-
-
