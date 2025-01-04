@@ -102,8 +102,8 @@ nnoremap <silent> <leader>t          :vertical rightbelow term<CR>
 nnoremap <silent> <leader>d          "_dd
 nnoremap <silent> <C-l>              :nohlsearch<CR>
 
-nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR>
-nnoremap <silent> <leader>h          :botrigh<CR>:split<CR>
+nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>
+nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>
 nnoremap <silent> <leader>c          :close<CR>
 nnoremap <silent> <leader><leader>,  5<C-W><
 nnoremap <silent> <leader><leader>.  5<C-W>>
@@ -113,12 +113,14 @@ nnoremap <silent> <leader><leader>k  5<C-W>+
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
 """ Move/Copy lines
-nnoremap <silent> <M-up>             :m .-2<CR>
-nnoremap <silent> <M-down>           :m .+1<CR>
-inoremap <silent> <M-up>             <Esc>:m .-2<CR>
-inoremap <silent> <M-down>           <Esc>:m .+1<CR>
-vnoremap <silent> <M-up>             :m '<-2<CR>gv
-vnoremap <silent> <M-down>           :m '>+1<CR>gv
+silent! execute "set <M-o>=\<Esc>o"
+silent! execute "set <M-l>=\<Esc>l"
+nnoremap <silent> <M-o>              :m .-2<CR>
+nnoremap <silent> <M-l>              :m .+1<CR>
+inoremap <silent> <M-o>              <Esc>:m .-2<CR>
+inoremap <silent> <M-l>              <Esc>:m .+1<CR>
+vnoremap <silent> <M-o>              :m '<-2<CR>gv
+vnoremap <silent> <M-l>              :m '>+1<CR>gv
 
 """ Some stuff
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
