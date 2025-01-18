@@ -5,8 +5,8 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 // static char *font = "Hack:size=12";
-// static char *font = "IBM Plex Mono:size=14";
-static char *font = "Firacode Nerd Font Mono:size=12";
+static char *font = "IBM Plex Mono:size=14";
+// static char *font = "Firacode Nerd Font Mono:size=12";
 // static char* font = "SauceCodePro Nerd Font Mono:size=14";
 // static char *font = "terminus:pixelsize=18:antialias=true:autohint=true";
 // static char *font = "agave:size=10";
@@ -132,7 +132,8 @@ static const char *colorname[] = {
 	// "gray90", /* default foreground colour */
 	// "black", /* default background colour */
 	"#BFBCB6", /* default foreground colour */
-	"#0D1017", /* default background colour */
+	"#000000", /* default background colour */
+	// "#0D1017", /* default background colour */
 };
 
 /*
