@@ -113,14 +113,12 @@ nnoremap <silent> <leader><leader>k  5<C-W>+
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
 """ Move/Copy lines
-silent! execute "set <M-o>=\<Esc>o"
-silent! execute "set <M-l>=\<Esc>l"
-nnoremap <silent> <M-o>              :m .-2<CR>
-nnoremap <silent> <M-l>              :m .+1<CR>
-inoremap <silent> <M-o>              <Esc>:m .-2<CR>
-inoremap <silent> <M-l>              <Esc>:m .+1<CR>
-vnoremap <silent> <M-o>              :m '<-2<CR>gv
-vnoremap <silent> <M-l>              :m '>+1<CR>gv
+nnoremap <silent> <C-S-o>              :m .-2<CR>
+nnoremap <silent> <C-S-l>              :m .+1<CR>
+inoremap <silent> <C-S-o>              <Esc>:m .-2<CR>i
+inoremap <silent> <C-S-l>              <Esc>:m .+1<CR>i
+vnoremap <silent> <C-S-o>              :m '<-2<CR>gv
+vnoremap <silent> <C-S-l>              :m '>+1<CR>gv
 
 """ Some stuff
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
@@ -151,7 +149,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| endif
 
 call plug#begin()
-Plug 'brennier/quicktex'
 Plug 'romainl/vim-qf'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/csv.vim'
@@ -233,22 +230,6 @@ else
 endif
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" }}}
-""" Config for quicktex {{{
-let g:quicktex_tex = {
-            \' '   : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
-            \'m'   : '\( <+++> \) <++>',
-            \'tab' : "\\begin{tabular}{|c|c|c|}\<CR><+++>\<CR>\\end{tabular}",
-            \}
-let g:quicktex_math = {
-            \' '    : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
-            \'eq'   : '= ',
-            \'set'  : '\{ <+++> \} <++>',
-            \'frac' : '\frac{<+++>}{<++>} <++>',
-            \'bn'   : '\mathbb{N} ',
-            \'br'   : '\mathbb{R} ',
-            \'bz'   : '\mathbb{Z} ',
-            \}
 " }}}
 """ Config for fzf.vim {{{
 let g:fzf_vim = {}
