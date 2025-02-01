@@ -113,12 +113,12 @@ nnoremap <silent> <leader><leader>k  5<C-W>+
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
 """ Move/Copy lines
-nnoremap <silent> <C-S-o>              :m .-2<CR>
-nnoremap <silent> <C-S-l>              :m .+1<CR>
-inoremap <silent> <C-S-o>              <Esc>:m .-2<CR>i
-inoremap <silent> <C-S-l>              <Esc>:m .+1<CR>i
-vnoremap <silent> <C-S-o>              :m '<-2<CR>gv
-vnoremap <silent> <C-S-l>              :m '>+1<CR>gv
+nnoremap <silent> <C-k>              :m .-2<CR>
+nnoremap <silent> <C-j>              :m .+1<CR>
+inoremap <silent> <C-k>              <Esc>:m .-2<CR>i
+inoremap <silent> <C-j>              <Esc>:m .+1<CR>i
+vnoremap <silent> <C-k>              :m '<-2<CR>gv
+vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
 """ Some stuff
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
