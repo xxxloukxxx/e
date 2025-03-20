@@ -6,7 +6,7 @@
  */
 // static char *font = "Hack:size=12";
 static char *font = "IBM Plex Mono:size=14";
-// static char *font = "Firacode Nerd Font Mono:size=12";
+// static char *font = "Firacode Nerd Font Mono:size=14";
 // static char* font = "SauceCodePro Nerd Font Mono:size=14";
 // static char *font = "terminus:pixelsize=18:antialias=true:autohint=true";
 // static char *font = "agave:size=10";
@@ -14,7 +14,7 @@ static char *font = "IBM Plex Mono:size=14";
 // static char *font = "Liberation
 // Mono:pixelsize=18:antialias=true:autohint=true"; static char *font = "DejaVu
 // Sans Mono:pixelsize=14:antialias=true:autohint=true"; static char *font =
-// static char *font = "monospace:size=8";
+// static char *font = "monospace:size=14";
 static int borderpx = 0;
 
 /*

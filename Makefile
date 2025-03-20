@@ -64,7 +64,7 @@ keyb:
 
 packages:
 	echo "\n>>> Install some packages"
-	sudo apt -y -qq install gimp firefox-esr firefox-esr-l10n-fr texlive-full evince zathura okular pdftk imagemagick eog
+	sudo apt -y -qq install gimp firefox-esr firefox-esr-l10n-fr texlive-full evince zathura okular pdftk imagemagick eog qimgv
 
 xcmd:
 	wget -O xcmd.sh https://get.x-cmd.com
