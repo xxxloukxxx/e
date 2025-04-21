@@ -115,8 +115,8 @@ nnoremap <silent> <leader>z          :set wrap!<CR>
 """ Move/Copy lines
 nnoremap <silent> <C-k>              :m .-2<CR>
 nnoremap <silent> <C-j>              :m .+1<CR>
-inoremap <silent> <C-k>              <Esc>:m .-2<CR>i
-inoremap <silent> <C-j>              <Esc>:m .+1<CR>i
+" inoremap <silent> <C-k>              <Esc>:m .-2<CR>i
+" inoremap <silent> <C-j>              <Esc>:m .+1<CR>i
 vnoremap <silent> <C-k>              :m '<-2<CR>gv
 vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
@@ -125,9 +125,10 @@ nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
 nnoremap <silent> ,u                 :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <silent> <leader>eur        i€<esc>
-nnoremap <silent> <leader>af         :Autoformat<CR>
+nnoremap <silent> <leader>af         :Neoformat<CR>
 
 nnoremap <silent> <leader><leader>b  :Buffers<cr>
+nnoremap <silent> <leader><leader>n  :bn<cr>
 nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :Marks<cr>
 nnoremap <silent> <leader><leader>l  :Lines<cr>
@@ -170,8 +171,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sbdchd/neoformat'
 call plug#end()
 " }}}
 """ Colorscheme {{{
@@ -237,6 +239,40 @@ let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 " }}}
 
 " }}}
+""" Config for vimtex {{{
+let g:vimtex_compiler_latexmk = {
+            \ 'aux_dir' : '',
+            \ 'out_dir' : '',
+            \ 'callback' : 1,
+            \ 'continuous' : 1,
+            \ 'executable' : 'latexmk',
+            \ 'hooks' : [],
+            \ 'options' : [
+            \   '-verbose',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \ ],
+            \}
+
+let g:vimtex_compiler_latexmk_engines = {
+            \ '_'                : '-pdf',
+            \ 'pdfdvi'           : '-pdfdvi',
+            \ 'pdfps'            : '-pdfps',
+            \ 'pdflatex'         : '-pdf',
+            \ 'luatex'           : '-lualatex',
+            \ 'lualatex'         : '-lualatex',
+            \ 'xelatex'          : '-xelatex',
+            \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
+            \ 'context (luatex)' : '-pdf -pdflatex=context',
+            \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
+            \}
+
+" }}}
+
+" }}}
+
+
 
 "
 " End of file
