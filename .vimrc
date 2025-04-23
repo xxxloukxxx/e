@@ -43,7 +43,7 @@ set shortmess+=I
 set nofoldenable
 if !isdirectory($HOME."/.vim")
     call mkdir($HOME."/.vim", "", 0770)
-endif
+endi
 if !isdirectory($HOME."/.vim/undo-dir")
     call mkdir($HOME."/.vim/undo-dir", "", 0700)
 endif
@@ -85,13 +85,18 @@ nnoremap <down> gj
 nnoremap <up>   gk
 nnoremap d      "_d
 nnoremap c      "_c
-nnoremap x      "_x
+" nnoremap x      "_x
 nnoremap <del>  "_x
 nnoremap dd     "_dd
 inoremap jk     <esc>
+inoremap JK     <esc>
+cnoremap jk     <C-c>
+cnoremap JK     <C-c>
 
 let mapleader = " "
 let g:mapleader = " "
+let maplocalleader = ","
+let g:maplocalleader = ","
 
 nnoremap <silent> <leader>w          :w!<CR>
 nnoremap <silent> <leader>q          :q<CR>
@@ -112,11 +117,36 @@ nnoremap <silent> <leader><leader>k  5<C-W>+
 
 nnoremap <silent> <leader>z          :set wrap!<CR>
 
-""" Move/Copy lines
-nnoremap <silent> <C-k>              :m .-2<CR>
-nnoremap <silent> <C-j>              :m .+1<CR>
-" inoremap <silent> <C-k>              <Esc>:m .-2<CR>i
-" inoremap <silent> <C-j>              <Esc>:m .+1<CR>i
+""" Move lines
+function! s:swap_lines(n1, n2)
+    let line1 = getline(a:n1)
+    let line2 = getline(a:n2)
+    call setline(a:n1, line2)
+    call setline(a:n2, line1)
+endfunction
+
+function! s:swap_up()
+    let n = line('.')
+    if n == 1
+        return
+    endif
+
+    call s:swap_lines(n, n - 1)
+    exec n - 1
+endfunction
+
+function! s:swap_down()
+    let n = line('.')
+    if n == line('$')
+        return
+    endif
+
+    call s:swap_lines(n, n + 1)
+    exec n + 1
+endfunction
+
+noremap <silent> <c-k>               :call <SID>swap_up()<CR>
+noremap <silent> <c-j>               :call <SID>swap_down()<CR>
 vnoremap <silent> <C-k>              :m '<-2<CR>gv
 vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
@@ -124,8 +154,9 @@ vnoremap <silent> <C-j>              :m '>+1<CR>gv
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
 nnoremap <silent> ,u                 :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
-nnoremap <silent> <leader>eur        i€<esc>
-nnoremap <silent> <leader>af         :Neoformat<CR>
+" nnoremap <silent> <leader>eur        i€<esc>
+nnoremap <silent> <leader>af         :Autoformat<CR>
+nnoremap <silent> <leader>aaf        :Neoformat<CR>
 
 nnoremap <silent> <leader><leader>b  :Buffers<cr>
 nnoremap <silent> <leader><leader>n  :bn<cr>
@@ -158,7 +189,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'tag': 'v2.15' }
 Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rafi/awesome-vim-colorschemes'
@@ -270,10 +301,13 @@ let g:vimtex_compiler_latexmk_engines = {
 
 " }}}
 
+""" Config for nnn {{{
+let g:nnn#set_default_mappings = 0
+let g:nnn#explorer_layout = { 'right': '~30%' } " or left, up, down
+nnoremap <silent> <leader>n      :NnnExplorer<CR>
 " }}}
 
-
-
+" }}}
 "
 " End of file
 " vim: set ft=vim :
