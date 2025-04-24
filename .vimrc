@@ -303,7 +303,7 @@ let g:vimtex_compiler_latexmk_engines = {
 
 """ Config for nnn {{{
 let g:nnn#set_default_mappings = 0
-let g:nnn#explorer_layout = { 'left': '~30%' } " or left, up, down
+let g:nnn#explorer_layout = { 'left': '~20%' } " or left, up, down
 nnoremap <silent> <leader>n      :NnnExplorer<CR>
 " }}}
 
