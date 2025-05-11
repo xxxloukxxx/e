@@ -154,6 +154,7 @@ vnoremap <silent> <C-j>              :m '>+1<CR>gv
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
 nnoremap <silent> ,u                 :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
+nnoremap <leader>r                   :%s/<C-r><C-w>//gc<Left><Left><Left>
 " nnoremap <silent> <leader>eur        i€<esc>
 nnoremap <silent> <leader>af         :Autoformat<CR>
 nnoremap <silent> <leader>aaf        :Neoformat<CR>
@@ -220,6 +221,9 @@ endtr
 set laststatus=2
 set background=dark
 set noshowmode
+let g:lightline = {
+            \ 'colorscheme': 'default',
+            \ }
 " }}}
 """ Config for Tcomment {{{
 nnoremap <silent> <leader>/ :TComment<CR>
@@ -268,8 +272,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 " }}}
-
-" }}}
 """ Config for vimtex {{{
 let g:vimtex_compiler_latexmk = {
             \ 'aux_dir' : '',
@@ -300,14 +302,13 @@ let g:vimtex_compiler_latexmk_engines = {
             \}
 
 " }}}
-
 """ Config for nnn {{{
 let g:nnn#set_default_mappings = 0
+" let g:nnn#explorer_layout =  { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 let g:nnn#explorer_layout = { 'left': '~20%' } " or left, up, down
 nnoremap <silent> <leader>n      :NnnExplorer<CR>
 " }}}
 
-" }}}
 "
 " End of file
 " vim: set ft=vim :
