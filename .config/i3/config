@@ -1,7 +1,8 @@
 # General
 set $mod Mod4
 focus_follows_mouse no
-font pango:Firacode Nerd Font Mono 12
+# font pango:Firacode Nerd Font Mono 12
+font pango:IBM Plex Mono 14
 bindcode $mod+36 exec st                         # mod4+return
 bindcode $mod+9 exec spad                        # mod4+esc
 bindcode $mod+40 exec --no-startup-id dmenu_run  # mod4+d
@@ -10,7 +11,7 @@ for_window [class="graph85emulator.exe"] floating enable
 for_window [class="obs"] floating enable
 
 for_window [class="spad"] move scratchpad, scratchpad show
-for_window [class="spad"] resize set 1048, move position center
+for_window [class="spad"] resize set 896, move position center
 
 # Colors/Borders/Gaps
 default_border pixel 2
@@ -136,7 +137,7 @@ bindcode $mod+Shift+22 mode $modsys
 bar {
         strip_workspace_numbers yes
                 status_command i3blocks
-                font pango:Firacode Nerd Font Mono 12
+                font pango:IBM Plex Mono 14
                 colors {
                         separator  #000000
                                 background #000000
