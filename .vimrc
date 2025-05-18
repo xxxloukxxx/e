@@ -150,6 +150,11 @@ noremap <silent> <c-j>               :call <SID>swap_down()<CR>
 vnoremap <silent> <C-k>              :m '<-2<CR>gv
 vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
+" Insert a blank line below or above current line (do not move the cursor),
+" see https://stackoverflow.com/a/16136133/6064933
+nnoremap <expr> oo 'm`' . v:count1 . 'o<Esc>``'
+nnoremap <expr> OO 'm`' . v:count1 . 'O<Esc>``'
+
 """ Some stuff
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
 nnoremap <silent> ,u                 :source $MYVIMRC<CR>
@@ -191,7 +196,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'lervag/vimtex', { 'tag': 'v2.15' }
-Plug 'mcchrish/nnn.vim'
+" Plug 'mcchrish/nnn.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ap/vim-css-color'
@@ -303,10 +308,10 @@ let g:vimtex_compiler_latexmk_engines = {
 
 " }}}
 """ Config for nnn {{{
-let g:nnn#set_default_mappings = 0
+" let g:nnn#set_default_mappings = 0
 " let g:nnn#explorer_layout =  { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
-let g:nnn#explorer_layout = { 'left': '~20%' } " or left, up, down
-nnoremap <silent> <leader>n      :NnnExplorer<CR>
+" let g:nnn#explorer_layout = { 'left': '~20%' } " or left, up, down
+" nnoremap <silent> <leader>n      :NnnExplorer<CR>
 " }}}
 
 "
