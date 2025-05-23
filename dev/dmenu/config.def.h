@@ -5,7 +5,7 @@ static int instant = 0;
 static int topbar = 1; /* -b  option; if 0, dmenu appears at bottom     */
 static int fuzzy = 1;  /* -F  option; if 0, dmenu doesn't use fuzzy matching     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
-static const char *fonts[] = {"IBM Plex Mono:size=14"};
+static const char *fonts[] = {"IBM Plex Mono:size=16"};
 // static const char *fonts[] = {"Firacode Nerd Font Mono:size=12"};
 // static const char* fonts[] = { "SauceCodePro Nerd Font Mono:size=14" };
 // static const char* fonts[] = { "RobotoMono Nerd Font:size=12" };

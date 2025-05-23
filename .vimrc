@@ -167,7 +167,7 @@ nnoremap <silent> <leader>aaf        :Neoformat<CR>
 nnoremap <silent> <leader><leader>b  :Buffers<cr>
 nnoremap <silent> <leader><leader>n  :bn<cr>
 nnoremap <silent> <leader><leader>f  :Files<CR>
-nnoremap <silent> <leader><leader>m  :Marks<cr>
+nnoremap <silent> <leader><leader>m  :FZFMru<cr>
 nnoremap <silent> <leader><leader>l  :Lines<cr>
 nnoremap <silent> <leader><leader>c  :Commits<cr>
 nnoremap <silent> <leader><leader>t  :Tags<cr>
@@ -187,32 +187,35 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| endif
 
 call plug#begin()
-Plug 'romainl/vim-qf'
-Plug 'Chiel92/vim-autoformat'
+Plug 'ap/vim-css-color'
 Plug 'chrisbra/csv.vim'
+" Plug 'dense-analysis/ale'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'lervag/vimtex', { 'tag': 'v2.15' }
-" Plug 'mcchrish/nnn.vim'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'ap/vim-css-color'
-Plug 'sheerun/vim-polyglot'
 Plug 'mbbill/undotree'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'sbdchd/neoformat'
+Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-" Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sbdchd/neoformat'
+Plug 'vim-autoformat/vim-autoformat'
+Plug 'wellle/targets.vim'
+Plug 'yegappan/mru'
 call plug#end()
 " }}}
+
+""" Plugins configs {{{
+
 """ Colorscheme {{{
 set t_Co=256
 set termguicolors
@@ -222,6 +225,7 @@ catch
     colorscheme default
 endtr
 " }}}
+
 """ Config for lightline {{{
 set laststatus=2
 set background=dark
@@ -230,13 +234,16 @@ let g:lightline = {
             \ 'colorscheme': 'default',
             \ }
 " }}}
+
 """ Config for Tcomment {{{
 nnoremap <silent> <leader>/ :TComment<CR>
 vnoremap <silent> <leader>/ :TComment<CR>
 " }}}
+
 """ Config for markdown {{{
 let g:vim_markdown_folding_disabled = 1
 " }}}
+
 """ Config for ALE {{{
 let g:ale_fixers = {
             \   'markdown': ['prettier'],
@@ -251,6 +258,7 @@ let g:ale_linters = {
 let g:ale_python_pylint_options = '--disable=C0114,C0116'
 let g:ale_fix_on_save = 1
 " }}}
+
 """ Config for Coc {{{
 inoremap <silent><expr> <TAB>
             \ coc#pum#visible() ? coc#pum#next(1) :
@@ -277,6 +285,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 " }}}
+
 """ Config for vimtex {{{
 let g:vimtex_compiler_latexmk = {
             \ 'aux_dir' : '',
@@ -307,11 +316,7 @@ let g:vimtex_compiler_latexmk_engines = {
             \}
 
 " }}}
-""" Config for nnn {{{
-" let g:nnn#set_default_mappings = 0
-" let g:nnn#explorer_layout =  { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
-" let g:nnn#explorer_layout = { 'left': '~20%' } " or left, up, down
-" nnoremap <silent> <leader>n      :NnnExplorer<CR>
+
 " }}}
 
 "
