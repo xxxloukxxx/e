@@ -74,6 +74,18 @@ augroup END
 
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+
+augroup markdown
+    autocmd!
+    autocmd BufEnter *.md :nnoremap <leader><leader>vm :norm VA$<cr>:!latexindent<cr>:w<cr>
+    autocmd BufEnter *.md :let @q='vi$:s/\%V //g:nohljk``'
+    autocmd BufEnter *.md :let @t='jkI\msjkooOO'
+    autocmd BufEnter *.md :let @o='I\bw{r}{5cm}A\ew0'
+    autocmd BufEnter *.md :let @p='i\vspace{-1cm}hhhh'
+    autocmd BufEnter *.md :let g:fzf_vim.tags_command = 'ctags -uR *.md'
+augroup END
+
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,6 +180,7 @@ nnoremap <silent> <leader><leader>b  :Buffers<cr>
 nnoremap <silent> <leader><leader>n  :bn<cr>
 nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :FZFMru<cr>
+nnoremap <silent> <leader><leader>h  :History<cr>
 nnoremap <silent> <leader><leader>l  :Lines<cr>
 nnoremap <silent> <leader><leader>c  :Commits<cr>
 nnoremap <silent> <leader><leader>t  :Tags<cr>
@@ -179,7 +192,7 @@ nnoremap <silent> <leader><leader>w  :Windows<cr>
 " plugins {{{
 """ Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --CReate-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 """ Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -211,6 +224,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'wellle/targets.vim'
 Plug 'yegappan/mru'
+Plug 'dohsimpson/vim-macroeditor'
 call plug#end()
 " }}}
 
@@ -245,18 +259,18 @@ let g:vim_markdown_folding_disabled = 1
 " }}}
 
 """ Config for ALE {{{
-let g:ale_fixers = {
-            \   'markdown': ['prettier'],
-            \   'python': ['black'],
-            \}
-
-let g:ale_linters = {
-            \   'markdown': ['markdownlint'],
-            \   'python': ['pylint'],
-            \}
-
-let g:ale_python_pylint_options = '--disable=C0114,C0116'
-let g:ale_fix_on_save = 1
+" let g:ale_fixers = {
+"             \   'markdown': ['prettier'],
+"             \   'python': ['black'],
+"             \}
+"
+" let g:ale_linters = {
+"             \   'markdown': ['markdownlint'],
+"             \   'python': ['pylint'],
+"             \}
+"
+" let g:ale_python_pylint_options = '--disable=C0114,C0116'
+" let g:ale_fix_on_save = 1
 " }}}
 
 """ Config for Coc {{{
@@ -281,9 +295,11 @@ endif
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " }}}
+
 """ Config for fzf.vim {{{
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
+let g:fzf_vim.tags_command = 'ctags -R'
 " }}}
 
 """ Config for vimtex {{{
