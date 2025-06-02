@@ -80,9 +80,11 @@ augroup markdown
     autocmd BufEnter *.md :nnoremap <leader><leader>vm :norm VA$<cr>:!latexindent<cr>:w<cr>
     autocmd BufEnter *.md :let @q='vi$:s/\%V //g:nohljk``'
     autocmd BufEnter *.md :let @t='jkI\msjkooOO'
+    autocmd BufEnter *.md :let @i='I\cimg{5cm}{}AOD'
     autocmd BufEnter *.md :let @o='I\bw{r}{5cm}A\ew0'
     autocmd BufEnter *.md :let @p='i\vspace{-1cm}hhhh'
     autocmd BufEnter *.md :let g:fzf_vim.tags_command = 'ctags -uR *.md'
+    autocmd BufWritePre *.md :Neoformat
 augroup END
 
 
