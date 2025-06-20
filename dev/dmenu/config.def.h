@@ -15,8 +15,8 @@ static const char *fonts[] = {"IBM Plex Mono:size=12"};
 static const char* prompt = NULL; /* -p  option; prompt to the left of input field */
 static const char* colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#BFBDB6", "#0D1017" },
-	// [SchemeNorm] = { "#bbbbbb", "#000000" },
+	// [SchemeNorm] = { "#BFBDB6", "#0D1017" },
+	[SchemeNorm] = { "#ccc", "#000" },
 	//	[SchemeNorm] = { "#bbbbbb", "#000000" },
 	[SchemeSel] = { "#eeeeee", "#005577" },
 	[SchemeSelHighlight] = { "#ffc978", "#005577" },
