@@ -4,12 +4,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
+static char *font = "agave:size=14";
 // static char *font = "Hack:size=12";
-static char *font = "IBM Plex Mono:size=12";
+// static char *font = "IBM Plex Mono:size=12";
 // static char *font = "Firacode Nerd Font Mono:size=14";
 // static char* font = "SauceCodePro Nerd Font Mono:size=14";
 // static char *font = "terminus:pixelsize=18:antialias=true:autohint=true";
-// static char *font = "agave:size=10";
 // static char *font = "monofur:size=18";
 // static char *font = "Liberation
 // Mono:pixelsize=18:antialias=true:autohint=true"; static char *font = "DejaVu
