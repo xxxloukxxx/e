@@ -85,6 +85,9 @@ augroup markdown
     autocmd BufEnter *.md :let @p='i\vspace{-1cm}hhhh'
     autocmd BufEnter *.md :let @e='jkA[3~ jk'
     autocmd BufEnter *.md :let g:fzf_vim.tags_command = 'ctags -uR *.md'
+    autocmd BufEnter *.md :ab darr \def\arraystretch{2}
+    autocmd BufEnter *.md :ab barr \begin{array}{rcl}
+    autocmd BufEnter *.md :ab earr \end{array}
     autocmd BufWritePre *.md :Neoformat
 augroup END
 
@@ -105,8 +108,8 @@ nnoremap <del>  "_x
 nnoremap dd     "_dd
 inoremap jk     <esc>
 inoremap JK     <esc>
-cnoremap jk     <C-c>
-cnoremap JK     <C-c>
+" cnoremap jk     <C-c>
+" cnoremap JK     <C-c>
 
 let mapleader = " "
 let g:mapleader = " "
@@ -167,14 +170,15 @@ vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
 " Insert a blank line below or above current line (do not move the cursor),
 " see https://stackoverflow.com/a/16136133/6064933
-nnoremap <expr> oo 'm`' . v:count1 . 'o<Esc>``'
-nnoremap <expr> OO 'm`' . v:count1 . 'O<Esc>``'
+" nnoremap <expr> oo 'm`' . v:count1 . 'o<Esc>``'
+" nnoremap <expr> OO 'm`' . v:count1 . 'O<Esc>``'
+
 
 """ Some stuff
 nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
 nnoremap <silent> ,u                 :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
-nnoremap <leader>r                   :%s/<C-r><C-w>//gc<Left><Left><Left>
+nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
 " nnoremap <silent> <leader>eur        i€<esc>
 nnoremap <silent> <leader>af         :Autoformat<CR>
 nnoremap <silent> <leader>aaf        :Neoformat<CR>
@@ -237,6 +241,7 @@ call plug#end()
 set t_Co=256
 set termguicolors
 try
+    " colorscheme gruvbox
     colorscheme ayu
 catch
     colorscheme default
