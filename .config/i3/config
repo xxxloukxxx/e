@@ -1,11 +1,12 @@
 # General
 set $mod Mod4
 focus_follows_mouse no
-# font pango:Firacode Nerd Font Mono 12
-font pango:IBM Plex Mono 14
+font pango:agave 14
+# font pango:IBM Plex Mono 14
 bindcode $mod+36 exec st                         # mod4+return
 bindcode $mod+9 exec spad                        # mod4+esc
 bindcode $mod+40 exec --no-startup-id dmenu_run  # mod4+d
+bindcode $mod+39 exec --no-startup-id dmenu_win  # mod4+s
 
 for_window [class="graph85emulator.exe"] floating enable
 for_window [class="obs"] floating enable
@@ -29,13 +30,15 @@ exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id numlockx on
 # exec_always --no-startup-id feh --randomize --no-xinerama --bg-fill ~/.w
-exec_always --no-startup-id discord
-assign [class="discord"] number "9:O"
+exec_always --no-startup-id feh --randomize --bg-fill ~/.w
+exec_always --no-startup-id vesktop
+# exec_always --no-startup-id discord
+assign [class="vesktop"] number "9:O"
 
 # Some bindings
 ## $mod+Shift+Ctrl+s
 bindcode $mod+Shift+Ctrl+39 exec --no-startup-id flameshot gui
-# bindcode $mod+Shift+Ctrl+22 exec --no-startup-id feh --randomize --no-xinerama --bg-fill ~/.w
+bindcode $mod+Shift+Ctrl+22 exec --no-startup-id feh --randomize --bg-fill ~/.w
 
 # Audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
@@ -137,7 +140,7 @@ bindcode $mod+Shift+22 mode $modsys
 bar {
         strip_workspace_numbers yes
                 status_command i3blocks
-                font pango:IBM Plex Mono 12
+                font pango:agave 14
                 colors {
                         separator  #000000
                                 background #000000
