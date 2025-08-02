@@ -7,7 +7,7 @@ bindcode $mod+36 exec st                         # mod4+return
 bindcode $mod+9 exec spad                        # mod4+esc
 bindcode $mod+40 exec --no-startup-id dmenu_run  # mod4+d
 bindcode $mod+39 exec --no-startup-id dmenu_win  # mod4+s
-bindcode $mod+54 exec --no-startup-id dmenu_mpc  # mod4+x
+bindcode $mod+54 exec --no-startup-id dmenu_mpc  # mod4+c
 
 for_window [class="graph85emulator.exe"] floating enable
 for_window [class="obs"] floating enable
@@ -125,17 +125,18 @@ mode "resize" {
 bindcode $mod+42 mode "resize"
 
 # Lock/Reboot/Shutdown
-set $modsys "(l)ock - (r)eboot - (s)hutdown"
-mode $modsys {
-# $mod + [l, r, s]
-        bindcode 46 exec --no-startup-id i3lock -c 000000, mode "default"
-                bindcode 27 exec --no-startup-id systemctl reboot
-                bindcode 39 exec --no-startup-id systemctl poweroff
-## $mod + [Return, Esc]
-                bindcode 36 mode "default"
-                bindcode 9  mode "default"
-}
-bindcode $mod+Shift+22 mode $modsys
+bindcode $mod+Shift+22 exec dmenu_power
+
+# set $modsys "(l)ock - (r)eboot - (s)hutdown"
+# mode $modsys {
+# # $mod + [l, r, s]
+#         bindcode 46 exec --no-startup-id i3lock -c 000000, mode "default"
+#                 bindcode 27 exec --no-startup-id systemctl reboot
+#                 bindcode 39 exec --no-startup-id systemctl poweroff
+# ## $mod + [Return, Esc]
+#                 bindcode 36 mode "default"
+#                 bindcode 9  mode "default"
+# }
 
 # Bar
 bar {
@@ -153,3 +154,6 @@ bar {
                                 binding_mode       #000000 #000000 #ffffff
                 }
 }
+
+# vim: set ft=i3config :
+

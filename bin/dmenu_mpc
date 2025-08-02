@@ -1,5 +1,5 @@
 #!/bin/bash
-choice=`echo -e "0: Play\n1: Stop\n2: Next\n3: Prev" | dmenu -n -l 4 | cut -d ':' -f 1`
+choice=`echo -e "0: Play\n1: Stop\n2: Next\n3: Prev" | dmenu -n | cut -d ':' -f 1`
 
 # execute the choice in background
 case "$choice" in
