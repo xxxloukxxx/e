@@ -7,6 +7,7 @@ bindcode $mod+36 exec st                         # mod4+return
 bindcode $mod+9 exec spad                        # mod4+esc
 bindcode $mod+40 exec --no-startup-id dmenu_run  # mod4+d
 bindcode $mod+39 exec --no-startup-id dmenu_win  # mod4+s
+bindcode $mod+54 exec --no-startup-id dmenu_mpc  # mod4+x
 
 for_window [class="graph85emulator.exe"] floating enable
 for_window [class="obs"] floating enable
