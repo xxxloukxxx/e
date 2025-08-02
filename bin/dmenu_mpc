@@ -1,5 +1,5 @@
 #!/bin/bash
-choice=`echo -e "0: Play\n1: Stop\n2: Next\n3: Prev" | dmenu -n | cut -d ':' -f 1`
+choice=`echo -e "0: Play\n1: Stop\n2: Next\n3: Prev\n4: Playlist" | dmenu -n | cut -d ':' -f 1`
 
 # execute the choice in background
 case "$choice" in
@@ -7,6 +7,7 @@ case "$choice" in
    1) /usr/bin/mpc stop & ;;
    2) /usr/bin/mpc next & ;;
    3) /usr/bin/mpc prev & ;;
+   4) /usr/bin/dmenu_mpc_playlist & ;;
    *) exit ;;
 esac
 
