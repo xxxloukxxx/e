@@ -3,7 +3,7 @@ all: upgrade install config suckless ohmyzsh keyb locales
 upgrade:
 	echo "\n>>> Update and upgrade"
 	sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric'
-	sudo cp -fr .install/sources.list /etc/apt/
+	sudo cp -fr .install/debian.sources /etc/apt/sources.list.d/
 	sudo apt -y -qq update
 	sudo apt -y -qq full-upgrade
 
