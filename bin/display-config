@@ -12,3 +12,7 @@ case "$choice" in
   *) exit ;;
 esac
 
+sleep 1
+
+/usr/bin/feh --randomize --bg-fill ~/.w
+

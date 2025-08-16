@@ -4,7 +4,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "agave:size=14";
+static char *font = "Agave Nerd Font Mono:size=14";
 // static char *font = "Hack:size=12";
 // static char *font = "IBM Plex Mono:size=12";
 // static char *font = "Firacode Nerd Font Mono:size=14";
