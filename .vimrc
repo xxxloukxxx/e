@@ -1,6 +1,7 @@
 "-------------------------------------------
-" .vimrc
+" .vimrc {{{
 "-------------------------------------------
+
 " configs {{{
 set encoding=utf-8
 scriptencoding utf-8
@@ -79,7 +80,7 @@ augroup markdown
     autocmd!
     autocmd BufEnter *.md :nnoremap <leader><leader>vm :norm VA$<cr>:!latexindent<cr>:w<cr>
     autocmd BufEnter *.md :let @q='vi$:s/\%V //g:nohljk``'
-    autocmd BufEnter *.md :let @t='jkI\msjkooOO'
+    autocmd BufEnter *.md :let @t='jkI\msjk'
     autocmd BufEnter *.md :let @i='I\cimg{5cm}{}AOD'
     autocmd BufEnter *.md :let @o='I\bw{r}{5cm}A\ew0'
     autocmd BufEnter *.md :let @p='i\vspace{-1cm}hhhh'
@@ -91,6 +92,21 @@ augroup markdown
     autocmd BufWritePre *.md :Neoformat
 augroup END
 
+
+fu! RestoreSess()
+if filereadable(getcwd() . '/.session.vim')
+    execute 'so ' . getcwd() . '/.session.vim'
+    if bufexists(1)
+        for l in range(1, bufnr('$'))
+            if bufwinnr(l) == -1
+                exec 'sbuffer ' . l
+            endif
+        endfor
+    endif
+endif
+endfunction
+
+autocmd VimEnter * nested call RestoreSess()
 
 " }}}
 
@@ -175,13 +191,13 @@ vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
 
 """ Some stuff
-nnoremap <silent> ,v                 :edit   $MYVIMRC<CR>
-nnoremap <silent> ,u                 :source $MYVIMRC<CR>
+nnoremap <silent> <localleader>v     :edit   $MYVIMRC<CR>
+nnoremap <silent> <localleader>u     :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
 " nnoremap <silent> <leader>eur        i€<esc>
 nnoremap <silent> <leader>af         :Autoformat<CR>
-nnoremap <silent> <leader>aaf        :Neoformat<CR>
+nnoremap <silent> <leader>nf         :Neoformat<CR>
 
 nnoremap <silent> <leader><leader>b  :Buffers<cr>
 nnoremap <silent> <leader><leader>n  :bn<cr>
@@ -192,30 +208,30 @@ nnoremap <silent> <leader><leader>l  :Lines<cr>
 nnoremap <silent> <leader><leader>c  :Commits<cr>
 nnoremap <silent> <leader><leader>t  :Tags<cr>
 nnoremap <silent> <leader><leader>w  :Windows<cr>
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " plugins {{{
-""" Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
-""" Run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| PlugInstall --sync | source $MYVIMRC
             \| endif
 
 call plug#begin()
+Plug 'arecarn/crunch.vim'
+Plug 'arecarn/vim-selection'
 Plug 'ap/vim-css-color'
 Plug 'chrisbra/csv.vim'
-" Plug 'dense-analysis/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-peekaboo'
-Plug 'lervag/vimtex', { 'tag': 'v2.15' }
+Plug 'lervag/vimtex'
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -232,6 +248,7 @@ Plug 'vim-autoformat/vim-autoformat'
 Plug 'wellle/targets.vim'
 Plug 'yegappan/mru'
 Plug 'dohsimpson/vim-macroeditor'
+" Plug 'dense-analysis/ale'
 call plug#end()
 " }}}
 
@@ -310,6 +327,7 @@ let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 let g:fzf_vim.tags_command = 'ctags -R'
 " }}}
 
+
 """ Config for vimtex {{{
 let g:vimtex_compiler_latexmk = {
             \ 'aux_dir' : '',
@@ -339,10 +357,13 @@ let g:vimtex_compiler_latexmk_engines = {
             \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
             \}
 
+let g:vimtex_view_general_viewer = 'zathura'
+
+" }}}
+
 " }}}
 
 " }}}
 
-"
 " End of file
 " vim: set ft=vim :
