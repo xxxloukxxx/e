@@ -3,13 +3,12 @@ all: upgrade install config suckless ohmyzsh keyb locales
 upgrade:
 	echo "\n>>> Update and upgrade"
 	sudo sh -c 'echo "cedric ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/cedric && chmod 0440 /etc/sudoers.d/cedric'
-	sudo cp -fr .install/debian.sources /etc/apt/sources.list.d/
 	sudo apt -y -qq update
 	sudo apt -y -qq full-upgrade
 
 install:
 	echo "\n>>> Install zsh, vim and friends"
-	sudo apt -y -qq install git make build-essential cmake ninja-build micro nnn vim vim-gtk3 zsh stterm lsd ripgrep suckless-tools aptitude nala universal-ctags
+	sudo apt -y -qq install git make build-essential cmake ninja-build micro nnn vim vim-gtk3 zsh stterm lsd ripgrep suckless-tools aptitude universal-ctags
 	sudo apt -y -qq install curl wget tmux gettext unzip p7zip-full rsync fd-find bat tree btop locales-all gcc silversearcher-ag
 	sudo apt -y -qq install moc pulseaudio pavucontrol fzf caja flameshot trash-cli
 	sudo apt -y -qq install x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev numlockx xdotool
@@ -24,7 +23,6 @@ install:
 ohmyzsh:
 	echo "\n>>> Install Oh-my-zsh"
 	sudo apt -y -qq install zsh
-	nala --install-completion zsh
 	rm -fr ~/.oh-my-zsh 2> /dev/null
 	wget -q "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
 	chmod +x ./install.sh

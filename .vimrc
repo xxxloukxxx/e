@@ -27,7 +27,7 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 set nobackup
-set scrolloff=999
+" set scrolloff=999
 set nowrap
 set incsearch
 set ignorecase
@@ -35,10 +35,9 @@ set smartcase
 set showcmd
 set showmatch
 set hlsearch
-set timeoutlen=600
-set updatetime=300
+set timeoutlen=500
 set history=5000
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+" set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set clipboard=unnamedplus
 set shortmess+=I
 set nofoldenable
@@ -55,8 +54,6 @@ set showbreak=\\
 set list
 set autochdir
 " }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " autocmd {{{
 augroup filetype_vim
@@ -91,58 +88,35 @@ augroup markdown
     autocmd BufEnter *.md :ab earr \end{array}
     autocmd BufWritePre *.md :Neoformat
 augroup END
-
-
-fu! RestoreSess()
-if filereadable(getcwd() . '/.session.vim')
-    execute 'so ' . getcwd() . '/.session.vim'
-    if bufexists(1)
-        for l in range(1, bufnr('$'))
-            if bufwinnr(l) == -1
-                exec 'sbuffer ' . l
-            endif
-        endfor
-    endif
-endif
-endfunction
-
-autocmd VimEnter * nested call RestoreSess()
-
 " }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " mappings {{{
-nnoremap j      gj
-nnoremap k      gk
 nnoremap <down> gj
 nnoremap <up>   gk
 nnoremap d      "_d
 nnoremap c      "_c
-" nnoremap x      "_x
 nnoremap <del>  "_x
 nnoremap dd     "_dd
 inoremap jk     <esc>
 inoremap JK     <esc>
-" cnoremap jk     <C-c>
-" cnoremap JK     <C-c>
 
 let mapleader = " "
 let g:mapleader = " "
 let maplocalleader = ","
 let g:maplocalleader = ","
 
+nnoremap <silent> <leader>e          :e .<cr>
+nnoremap <silent> <leader>n          :bn<cr>
 nnoremap <silent> <leader>w          :w!<CR>
 nnoremap <silent> <leader>q          :q<CR>
 nnoremap <silent> <leader><ESC><ESC> :qa!<CR>
 nnoremap <silent> <leader>m          :w<cr>:make<cr>
 nnoremap <silent> <leader>x          :bd!<cr>
-nnoremap <silent> <leader>t          :vertical rightbelow term<CR>
-nnoremap <silent> <leader>d          "_dd
+nnoremap <silent> <leader>t          :bot term<CR><C-W>N:res 10<cr>i
 nnoremap <silent> <C-l>              :nohlsearch<CR>
 
-nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>
-nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>
+nnoremap <silent> <leader>v          :aboveleft<CR>:vs<CR><C-W><C-W>:enew<cr>
+nnoremap <silent> <leader>h          :botrigh<CR>:split<CR><C-W><C-W>:enew<cr>
 nnoremap <silent> <leader>c          :close<CR>
 nnoremap <silent> <leader><leader>,  5<C-W><
 nnoremap <silent> <leader><leader>.  5<C-W>>
@@ -184,34 +158,19 @@ noremap <silent> <c-j>               :call <SID>swap_down()<CR>
 vnoremap <silent> <C-k>              :m '<-2<CR>gv
 vnoremap <silent> <C-j>              :m '>+1<CR>gv
 
-" Insert a blank line below or above current line (do not move the cursor),
-" see https://stackoverflow.com/a/16136133/6064933
-" nnoremap <expr> oo 'm`' . v:count1 . 'o<Esc>``'
-" nnoremap <expr> OO 'm`' . v:count1 . 'O<Esc>``'
-
-
 """ Some stuff
 nnoremap <silent> <localleader>v     :edit   $MYVIMRC<CR>
 nnoremap <silent> <localleader>u     :source $MYVIMRC<CR>
 nnoremap <leader>s                   :%s/
 nnoremap <leader>r                   :%s/<C-r><C-w>//g<Left><Left>
-" nnoremap <silent> <leader>eur        i€<esc>
 nnoremap <silent> <leader>af         :Autoformat<CR>
-nnoremap <silent> <leader>nf         :Neoformat<CR>
+nnoremap <silent> <leader>f          :Neoformat<CR>
 
 nnoremap <silent> <leader><leader>b  :Buffers<cr>
-nnoremap <silent> <leader><leader>n  :bn<cr>
 nnoremap <silent> <leader><leader>f  :Files<CR>
 nnoremap <silent> <leader><leader>m  :FZFMru<cr>
-nnoremap <silent> <leader><leader>h  :History<cr>
 nnoremap <silent> <leader><leader>l  :Lines<cr>
-nnoremap <silent> <leader><leader>c  :Commits<cr>
-nnoremap <silent> <leader><leader>t  :Tags<cr>
-nnoremap <silent> <leader><leader>w  :Windows<cr>
-
 " }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " plugins {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -222,10 +181,12 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
             \| endif
 
 call plug#begin()
+" Plug 'dense-analysis/ale'
+Plug 'ap/vim-css-color'
 Plug 'arecarn/crunch.vim'
 Plug 'arecarn/vim-selection'
-Plug 'ap/vim-css-color'
 Plug 'chrisbra/csv.vim'
+Plug 'dohsimpson/vim-macroeditor'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -235,7 +196,6 @@ Plug 'lervag/vimtex'
 Plug 'mbbill/undotree'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -247,19 +207,17 @@ Plug 'tpope/vim-surround'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'wellle/targets.vim'
 Plug 'yegappan/mru'
-Plug 'dohsimpson/vim-macroeditor'
-" Plug 'dense-analysis/ale'
 call plug#end()
 " }}}
 
-""" Plugins configs {{{
+" plugins configs {{{
 
 """ Colorscheme {{{
 set t_Co=256
 set termguicolors
 try
     " colorscheme gruvbox
-    colorscheme ayu
+    colorscheme retrobox
 catch
     colorscheme default
 endtr
@@ -269,9 +227,6 @@ endtr
 set laststatus=2
 set background=dark
 set noshowmode
-let g:lightline = {
-            \ 'colorscheme': 'default',
-            \ }
 " }}}
 
 """ Config for Tcomment {{{

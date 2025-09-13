@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="dst"
-ZSH_THEME="avit"
+ZSH_THEME="avit" # set by `omz`
 #ZSH_THEME="minimal"
 
 # Set list of themes to pick from when loading at random
@@ -74,8 +74,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(themes git tmux fzf debian z zsh-syntax-highlighting zsh-autosuggestions)
 
-apt_pref='nala'
-# apt_pref='apt'
+apt_pref='apt-get'
 apt_upgr='upgrade'
 
 source $ZSH/oh-my-zsh.sh
@@ -95,7 +94,7 @@ export LANG=fr_FR.UTF-8
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -103,7 +102,7 @@ export LANG=fr_FR.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="e ~/.zshrc"
+# alias zshconfig="e ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export FZF_DEFAULT_OPTS='--layout=reverse -x'
@@ -115,14 +114,14 @@ export FZF_CTRL_T_COMMAND='ag -l -g ""'
 export EDITOR=vim
 export VISUAL=vim
 
-alias ls='lsd --color=auto'
+alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
 
-alias l="lsd -lh"
-alias bat="batcat"
+alias l="ls -lh"
+alias bat="bat"
 alias du="du -h"
 alias df="df -h"
 
@@ -131,13 +130,10 @@ alias e="vim"
 alias zz="zathura --fork"
 
 alias lgit="git add . && git commit -m \"$(date)\" && git push"
-alias make_and_push="make && lgit"
 
-alias maj="sudo apt-get -y -qq update && sudo apt-get -y -qq upgrade"
-
-export NNN_OPTS='der'
+export NNN_OPTS='de'
 export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='o:fzopen;m:mocq;c:fzcd;p:preview-tui'
+# export NNN_PLUG='o:fzopen;m:mocq;c:fzcd;p:preview-tui'
 export NNN_TRASH=1
 export NNN_OPENER=nopen
 
@@ -175,6 +171,6 @@ n ()
     }
 }
 
+# [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 
-
-[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
+# fpath+=~/.zfunc; autoload -Uz compinit; compinit
