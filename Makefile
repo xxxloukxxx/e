@@ -9,7 +9,7 @@ upgrade:
 install:
 	echo "\n>>> Install zsh, vim and friends"
 	sudo apt -y -qq install git make build-essential cmake ninja-build micro nnn vim vim-gtk3 zsh stterm lsd ripgrep suckless-tools aptitude universal-ctags
-	sudo apt -y -qq install curl wget tmux gettext unzip p7zip-full rsync fd-find bat tree btop locales-all gcc silversearcher-ag
+	sudo apt -y -qq install curl wget tmux gettext unzip p7zip-full rsync fd-find bat tree btop locales-all gcc silversearcher-ag alacritty
 	sudo apt -y -qq install moc pulseaudio pavucontrol fzf caja flameshot trash-cli
 	sudo apt -y -qq install x11-utils libreadline-dev libx11-dev libxinerama-dev libxft-dev numlockx xdotool
 	sudo apt -y -qq install greetd xorg xinit dex i3 i3blocks i3status feh suckless-tools dunst 
